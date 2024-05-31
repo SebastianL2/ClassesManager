@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sidebar } from '../sidebar';
+
 import { ColorModeContext, useMode } from '../../theme';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Topbar } from '../general/top-bar';
@@ -10,7 +10,7 @@ return(
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline/>
-        <Sidebar/>
+        
         <div className='app'>
           <main className='content'>
            <Topbar/>
