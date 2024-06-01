@@ -1,6 +1,7 @@
 import { createTheme,Theme } from "@mui/material";
 import { createContext,useState,useMemo } from "react";
-
+import { createShadows } from "./createCustoms/create-shadows";
+import { Shadows } from "@mui/material";
 type Mode = 'light' | 'dark';
 interface ColorMode {
     toggleColorMode: () => void;
@@ -127,8 +128,19 @@ export const palette = (mode: Mode) => ({
   
 
   export const themeSettings = (mode: Mode) => {
+    const shadows= createShadows();
     const colors = palette(mode);
     return {
+      breakpoints: {
+        values: {
+          xs: 0,
+          sm: 600,
+          md: 900,
+          lg: 1200,
+          xl: 1440
+        }
+      },
+      shadows,
       palette: {
         mode: mode,
         ...(mode === "dark"
@@ -167,6 +179,7 @@ export const palette = (mode: Mode) => ({
               },
             }),
       },
+
       typography: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 12,
@@ -218,3 +231,5 @@ export const palette = (mode: Mode) => ({
   
     return [theme, colorMode];
   };
+
+  
