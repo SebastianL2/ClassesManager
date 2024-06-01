@@ -29,8 +29,9 @@ interface SidebarCProps {
 const Item: React.FC<SidebarCProps> = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
-  console.log("hhola")
+  
   return (
+    <Link to={to} style={{ textDecoration: 'none', color: 'inherit' }}>
     <MenuItem
       active={selected === title}
       style={{
@@ -39,9 +40,12 @@ const Item: React.FC<SidebarCProps> = ({ title, to, icon, selected, setSelected 
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      <Typography>{title}</Typography>
-      <Link to={to} />
+      
+        
+        {title}
+      
     </MenuItem>
+    </Link>
   );
 };
 export const SidebarC: React.FC =()=>{
@@ -64,7 +68,7 @@ export const SidebarC: React.FC =()=>{
     >
       <Menu
         menuItemStyles={{
-          button: ({ level, active, disabled }) => {
+          button: ({ level, active }) => {
             if (level === 0) {
               return {
                 
@@ -124,7 +128,7 @@ export const SidebarC: React.FC =()=>{
             Data
           </Typography>
           <Item
-            title="Estudents"
+            title="Students"
             to="/students"
             icon={<PeopleOutlinedIcon />}
             selected={selected}
