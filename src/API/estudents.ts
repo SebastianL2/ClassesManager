@@ -1,3 +1,14 @@
+
+
+export function fetchData(){
+
+  const students = import.meta.env.VITE_API_URL + 'students';
+  fetch(students)
+    .then(response => response.json())
+    .then(res=> console.log(res))
+    .catch(error => console.error('There was a problem with your fetch operation:', error));
+  
+}
 export const getDataEstudents = [
     {
       id: 1,

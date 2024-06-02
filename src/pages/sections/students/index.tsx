@@ -4,11 +4,14 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useTheme } from "@mui/material";
 import { palette } from "../../../theme";
 import Header from "../../general/header";
-import { getDataEstudents } from "../../../API/estudents";
+import { fetchData, getDataEstudents } from "../../../API/estudents";
+import { useEffect } from "react";
 const Students: React.FC =()=>{
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
-
+ useEffect(()=>{
+  fetchData();
+ })
   const columns = [
     { field: "id", headerName: "ID",type: "number" },
     { field: "registrarId", headerName: "Registrar ID" },
