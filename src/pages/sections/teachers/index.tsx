@@ -6,7 +6,7 @@ import TableUi from '../../material-ui/table-ui';
 import { palette } from '../../../theme';
 import FormStudent from '../../general/forms/form-student';
 
-const Students: React.FC = () => {
+const Teachers: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
 
@@ -14,7 +14,7 @@ const Students: React.FC = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="STUDENTS SECTION" subtitle="See all the data of students" />
+        <Header title="STUDENTS SECTION" subtitle="See all the data of students " />
       </Box>
 
       {/* GRID & CHARTS */}
@@ -89,4 +89,4 @@ const Students: React.FC = () => {
   );
 }
 
-export default Students;
+export default Teachers;

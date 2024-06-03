@@ -135,15 +135,15 @@ export const SidebarC: React.FC =()=>{
             setSelected={setSelected}
           />
           <Item
-            title="Contacts Information"
-            to="/contacts"
+            title="Teachers"
+            to="/teachers"
             icon={<ContactsOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
           />
           <Item
-            title="Invoices Balances"
-            to="/invoices"
+            title="Classes"
+            to="/classes"
             icon={<ReceiptOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
