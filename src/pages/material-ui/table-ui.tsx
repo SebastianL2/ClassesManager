@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, IconButton } from '@mui/material';
-import { DataGrid, GridAlignment, GridRenderCellParams, GridRenderColumnsProps } from '@mui/x-data-grid';
+import { DataGrid, GridAlignment, GridCellProps, GridEditCellValueParams, GridRenderCellParams, GridRenderColumnsProps } from '@mui/x-data-grid';
 import { useTheme } from '@mui/material';
 import { palette } from '../../theme';
 import { fetchData } from '../../API/estudents';
@@ -12,7 +12,12 @@ const TableUi: React.FC = () => {
   const colors = palette(theme.palette.mode);
   const [dataStudents, setDataStudents] = useState([]);
   const [columnsStudents, setColumnsStudents] = useState<Column[]>([]);
-
+  interface apiPropsModifiers{
+    id:string;
+    name:string;
+    last_name:string;
+    email:string;
+   }
   useEffect(() => {
     const getData = async () => {
       const data = await fetchData();
@@ -28,7 +33,11 @@ const deleteRow = (id:string)=>{
   }
   request()
 }
-  
+
+const updateRow = (name:string)=>{
+  console.log(`Updating row with id: ${name}`);
+ 
+}
 
 interface Column {
     field: string;
@@ -39,12 +48,19 @@ interface Column {
     align?:GridAlignment;
     headerAlign?:GridAlignment;
     renderCell?:(params: GridRenderCellParams) => React.ReactNode;
+    editable?:boolean;
   }
-
+  const handleEditCellChange = (params: GridCellProps) => {
+    const { id, field, props } = params;
+    const newValue = props.value; // Valor editado de la celda
+    const rowId = props.row.id;
+    console.log(rowId)
+  };
+  
   useEffect(() => {
     const columns: Column[] = [
       { field: "id", headerName: "ID", type: "number", align: 'left', headerAlign: 'left' },
-      { field: "name", headerName: "Name", align: 'left', headerAlign: 'left' },
+      { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
       { field: "last_name", headerName: "LastName", type: "string", width: 100, align: 'left', headerAlign: 'left' },
       { field: "email", headerName: "Email", type: "string", width: 200, align: 'left', headerAlign: 'left' },
       { field: "options", headerName: "Options", type: "string", width: 200, align: 'left', headerAlign: 'left',
@@ -52,12 +68,15 @@ interface Column {
            const handleDelete=()=>{
              deleteRow(row.id)
            }
+           const handleUpdate=()=>{
+            updateRow(row.name);
+          }
            return(
             <Box>
             <IconButton aria-label="delete" onClick={handleDelete}>
               <DeleteOutline />
             </IconButton>
-            <IconButton aria-label="delete" color="secondary">
+            <IconButton aria-label="delete" color="secondary" onClick={handleUpdate}>
               <EditOutlinedIcon/>
             </IconButton>
             </Box>
@@ -90,6 +109,7 @@ interface Column {
             checkboxSelection
             disableRowSelectionOnClick
             autoHeight
+            editMode="cell"
           />
         </Grid>
       </Grid>
