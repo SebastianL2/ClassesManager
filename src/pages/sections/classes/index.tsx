@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import Header from '../../general/header';
 import TableUi from '../../material-ui/table-ui';
 import { palette } from '../../../theme';
-import FormStudent from '../../general/forms/form-student';
+import FormClassses from '../../general/forms/form-classes';
 
 const Classes: React.FC = () => {
   const theme = useTheme();
@@ -81,7 +81,7 @@ const Classes: React.FC = () => {
 
           </Box>
           
-           <FormStudent/>
+           <FormClassses/>
           
         </Box>
       </Box>

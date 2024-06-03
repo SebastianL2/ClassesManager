@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Grid } from '@mui/material';
-import { DataGrid, GridAlignment } from '@mui/x-data-grid';
+import { Box, Button, Grid, IconButton } from '@mui/material';
+import { DataGrid, GridAlignment, GridRenderCellParams, GridRenderColumnsProps } from '@mui/x-data-grid';
 import { useTheme } from '@mui/material';
 import { palette } from '../../theme';
 import { fetchData } from '../../API/estudents';
-
+import { DeleteOutline } from '@mui/icons-material';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { deleteOne } from '../../API/general-http-request';
 const TableUi: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
@@ -19,6 +21,15 @@ const TableUi: React.FC = () => {
     getData();
   }, []);
 
+const deleteRow = (id:string)=>{
+  console.log(`Deleting row with id: ${id}`);
+  const request = async () => {
+    const res =await deleteOne(id);
+  }
+  request()
+}
+  
+
 interface Column {
     field: string;
     headerName: string;
@@ -26,7 +37,8 @@ interface Column {
     flex?: number;
     width?: number;
     align?:GridAlignment;
-    headerAlign?:GridAlignment
+    headerAlign?:GridAlignment;
+    renderCell?:(params: GridRenderCellParams) => React.ReactNode;
   }
 
   useEffect(() => {
@@ -35,7 +47,23 @@ interface Column {
       { field: "name", headerName: "Name", align: 'left', headerAlign: 'left' },
       { field: "last_name", headerName: "LastName", type: "string", width: 100, align: 'left', headerAlign: 'left' },
       { field: "email", headerName: "Email", type: "string", width: 200, align: 'left', headerAlign: 'left' },
-      { field: "options", headerName: "Options", type: "string", width: 200, align: 'left', headerAlign: 'left' },
+      { field: "options", headerName: "Options", type: "string", width: 200, align: 'left', headerAlign: 'left',
+        renderCell:({row})=>{
+           const handleDelete=()=>{
+             deleteRow(row.id)
+           }
+           return(
+            <Box>
+            <IconButton aria-label="delete" onClick={handleDelete}>
+              <DeleteOutline />
+            </IconButton>
+            <IconButton aria-label="delete" color="secondary">
+              <EditOutlinedIcon/>
+            </IconButton>
+            </Box>
+           );
+        }        
+       },
     ];
     setColumnsStudents(columns);
   }, []);

@@ -1,7 +1,6 @@
 import { createTheme,Theme } from "@mui/material";
 import { createContext,useState,useMemo } from "react";
 import { createShadows } from "./createCustoms/create-shadows";
-import { Shadows } from "@mui/material";
 type Mode = 'light' | 'dark';
 interface ColorMode {
     toggleColorMode: () => void;

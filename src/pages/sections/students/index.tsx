@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React  from 'react';
 import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import Header from '../../general/header';
@@ -14,7 +14,7 @@ const Students: React.FC = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="STUDENTS SECTION" subtitle="See all the data of students" />
+        <Header title="STUDENTS SECTION" subtitle="See all the data of students " />
       </Box>
 
       {/* GRID & CHARTS */}

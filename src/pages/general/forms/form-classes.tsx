@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Box, Button, Link, Stack, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import { Box, Button, Stack, TextField, Typography } from '@mui/material';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -9,7 +9,7 @@ import { green } from '@mui/material/colors';
 import Fab from '@mui/material/Fab';
 import CheckIcon from '@mui/icons-material/Check';
 
-const FormStudent: React.FC = () => {
+const FormClassses: React.FC = () => {
 
   const [estado, setEstado] = React.useState<string>('');
   const [estado2, setEstado2] = React.useState<string>('');
@@ -206,7 +206,7 @@ const FormStudent: React.FC = () => {
               sx={{ mb: 2 }}
             >
               <Typography variant="h4">
-                Ingresa los datos del estudiante aqui
+                Ingresa los datos dela Clase aqui
               </Typography>
          
             </Stack>
@@ -329,4 +329,4 @@ const FormStudent: React.FC = () => {
 
 
 
-export default FormStudent;
+export default FormClassses;

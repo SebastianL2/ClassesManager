@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import Header from '../../general/header';
 import TableUi from '../../material-ui/table-ui';
 import { palette } from '../../../theme';
-import FormStudent from '../../general/forms/form-student';
+import FormTeacher from '../../general/forms/form-teacher';
 
 const Teachers: React.FC = () => {
   const theme = useTheme();
@@ -44,7 +44,7 @@ const Teachers: React.FC = () => {
                 fontWeight="bold"
                 color={colors.greenAccent[500]}
               >
-                Students Users System
+                Teachers Users System
               </Typography>
             </Box>
             <Box>
@@ -76,12 +76,12 @@ const Teachers: React.FC = () => {
             p="15px"
           >
             <Typography color={colors.greenAccent[300]} variant="h5" fontWeight="600">
-              Add new Student 
+              Add new Teacher 
             </Typography>
 
           </Box>
           
-           <FormStudent/>
+           <FormTeacher/>
           
         </Box>
       </Box>
