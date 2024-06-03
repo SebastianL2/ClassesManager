@@ -46,6 +46,13 @@ const Students: React.FC = () => {
               >
                 Students Users System
               </Typography>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                color={colors.greenAccent[700]}
+              >
+                Puedes editar haciendo doble click en la casilla luego dar click icono Guardar
+              </Typography>
             </Box>
             <Box>
               <IconButton>

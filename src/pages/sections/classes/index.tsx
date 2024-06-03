@@ -14,7 +14,7 @@ const Classes: React.FC = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="STUDENTS SECTION" subtitle="See all the data of students " />
+        <Header title="CLASSES SECTION" subtitle="See all the data of classes " />
       </Box>
 
       {/* GRID & CHARTS */}
@@ -44,7 +44,14 @@ const Classes: React.FC = () => {
                 fontWeight="bold"
                 color={colors.greenAccent[500]}
               >
-                Students Users System
+                Classes Data
+              </Typography>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                color={colors.greenAccent[700]}
+              >
+                Puedes editar haciendo doble click en la casilla luego dar click icono Guardar
               </Typography>
             </Box>
             <Box>
