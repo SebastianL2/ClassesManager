@@ -5,11 +5,31 @@ import Header from '../../general/header';
 import TableUi from '../../material-ui/table-ui';
 import { palette } from '../../../theme';
 import FormStudent from '../../general/forms/form-student';
+import { GridAlignment, GridRenderCellParams } from '@mui/x-data-grid';
 
 const Students: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
+  interface Column {
+    field: string;
+    headerName: string;
+    type?: 'number' | 'string';
+    flex?: number;
+    width?: number;
+    align?:GridAlignment;
+    headerAlign?:GridAlignment;
+    renderCell?:(params: GridRenderCellParams) => React.ReactNode;
+    editable?:boolean;
+  }
 
+
+    const columnsSections: Column[] = [
+      { field: "id", headerName: "ID", type: "number", align: 'left', headerAlign: 'left',editable: false  },
+      { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
+      { field: "last_name", headerName: "LastName", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: true  },
+      { field: "email", headerName: "Email", type: "string", width: 200, align: 'left', headerAlign: 'left',editable: true  },
+
+    ];
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -63,7 +83,7 @@ const Students: React.FC = () => {
             </Box>
           </Box>
           <Box p="5px 30px">
-            <TableUi />
+            <TableUi urlPlus='students' columnsSections={[...columnsSections]}/>
           </Box>
         </Box>
         <Box

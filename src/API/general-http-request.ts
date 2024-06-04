@@ -1,14 +1,28 @@
 const api = import.meta.env.VITE_API_URL
 interface apiPropsModifiers{
- name:string;
- last_name:string;
- email:string;
+ name?:string;
+ description?:string;
+ last_name?:string;
+ email?:string;
 }
 
-
-export const saveOne = async (data:apiPropsModifiers) => {
+export const fetchData = async (urlPlus:string) => {
   try {
-    const response = await fetch(`${api}students/`,{
+    console.log("url",urlPlus);
+    
+    const response = await fetch(api+urlPlus);
+    const res = await response.json();
+    console.log(res);
+    
+    return res;
+  } catch (error) {
+    console.error('There was a problem with your fetch operation:', error);
+  }
+};
+
+export const saveOne = async (data:apiPropsModifiers,urlPlus:string) => {
+  try {
+    const response = await fetch(`${api}${urlPlus}/`,{
         method:'POST',
         headers:{
             'content-Type':'application/json'
@@ -24,9 +38,9 @@ export const saveOne = async (data:apiPropsModifiers) => {
   }
 };
 
-export const deleteOne = async (id:string) => {
+export const deleteOne = async (id:string,urlPlus:string) => {
   try {
-    const response = await fetch(`${api}students/${id}`,{
+    const response = await fetch(`${api}${urlPlus}/${id}`,{
         method:'DELETE',
         headers:{
             'content-Type':'application/json'
@@ -42,9 +56,9 @@ export const deleteOne = async (id:string) => {
 };
 
 
-export const updateOne = async (data:apiPropsModifiers) => {
+export const updateOne = async (data:apiPropsModifiers,urlPlus:string) => {
   try {
-    const response = await fetch(`${api}students/`,{
+    const response = await fetch(`${api}${urlPlus}/`,{
         method:'PATCH',
         headers:{
             'content-Type':'application/json'

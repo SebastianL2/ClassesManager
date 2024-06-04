@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import Alert, { AlertColor } from '@mui/material/Alert';
 
-export  const SnackBarAlert = ({ message,view }: { message: string,view:boolean }) => {
+export  const SnackBarAlert = ({ message,view,severity }: { message: string,view:boolean,severity:AlertColor }) => {
   const [open, setOpen] = React.useState(view);
 
  
@@ -20,7 +20,7 @@ export  const SnackBarAlert = ({ message,view }: { message: string,view:boolean 
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert
           onClose={handleClose}
-          severity="success"
+          severity={severity}
           variant="filled"
           sx={{ width: '100%' }}
         >

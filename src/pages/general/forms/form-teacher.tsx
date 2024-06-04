@@ -1,18 +1,16 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Box, Button, Link, Stack, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import { styled } from '@mui/material/styles';
+import { Box, Button, Stack, TextField, Typography } from '@mui/material';
+import React from 'react';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CircularProgress from '@mui/material/CircularProgress';
 import { green } from '@mui/material/colors';
 import Fab from '@mui/material/Fab';
 import CheckIcon from '@mui/icons-material/Check';
+import { saveOne } from '../../../API/general-http-request';
 
 const FormTeacher: React.FC = () => {
 
-  const [estado, setEstado] = React.useState<string>('');
-  const [estado2, setEstado2] = React.useState<string>('');
 
 
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -29,33 +27,7 @@ const FormTeacher: React.FC = () => {
   };
   
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
- 
-    setEstado(event.target.value as string);
-    formik.setFieldValue('role', event.target.value as string);
-    console.log("hola . " + event.target.value)
-  };
 
-  const handleChange2 = (event: React.ChangeEvent<{ value: unknown }>) => {
- 
-  
-    formik.setFieldValue('city', event.target.value as string);
-    setEstado2(event.target.value as string)
-    console.log("hola . " + event.target.value)
-
-  };
-  
-  const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-  });
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -111,14 +83,8 @@ const FormTeacher: React.FC = () => {
   const formik = useFormik({
     initialValues: {
       name: '',
-      lastname: '',
+      last_name: '',
       email: '',
-      password: '',
-      phone: '',
-      secure_url: '',
-      public_id: '',
-      city: '',
-      role:'',
       submit: null
     },
     validationSchema: Yup.object({
@@ -131,52 +97,25 @@ const FormTeacher: React.FC = () => {
         .string()
         .max(255)
         .required('Name is required'),
-        lastname: Yup
+      last_name: Yup
         .string()
         .max(255)
-        .required('Name is required'),
-      password: Yup
-        .string()
-        .max(255)
-        .required('Password is required'),
-      phone: Yup
-      .string()
-      .max(255)
-      .required('Phone is required'),
-      role: Yup
-      .string()
-      .max(255)
-      .required('Role is required'),
+        .required('Last Name is required'),
+
     }),
     onSubmit: async (values, helpers) => {
+      console.log("data",values)
+      const save = async () => {
+        const res =await saveOne(values,'teachers');
      
-      try {
-        const jsonData = JSON.stringify(values);
-        
-        const response = await fetch(`/users`, {
-          method: 'POST',
-          body: jsonData,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-    
-        if (response.ok) {
-          console.log('Solicitud POST exitosa');
-          helpers.setStatus({ success: true });
-          helpers.setErrors({ submit: "Usuario agregado" });
-          helpers.setSubmitting(true);
-        } else {
-          // Manejar errores en caso de una respuesta no exitosa
-          const errorData = await response.json();
-          console.error('Error en la solicitud POST:', errorData);
-          helpers.setStatus({ success: false });
-          helpers.setErrors({ submit: errorData.message });
-          helpers.setSubmitting(false);
-        }
-      } catch (error) {
- 
+        helpers.setStatus({ success: false });
+        helpers.setErrors({ submit: res.message });
+        helpers.setSubmitting(false);
+
       }
+      save();
+     
+
     }
     
   });
@@ -206,7 +145,7 @@ const FormTeacher: React.FC = () => {
               sx={{ mb: 2 }}
             >
               <Typography variant="h4">
-                Ingresa los datos del Profesor aqui
+               Enter student information
               </Typography>
          
             </Stack>
@@ -235,15 +174,15 @@ const FormTeacher: React.FC = () => {
                 >
                 <div style={{ display: 'flex' }}>
                     <TextField style={{ marginRight: '20px' }}
-                    error={!!(formik.touched.phone && formik.errors.phone)}
+                    error={!!(formik.touched.last_name && formik.errors.last_name)}
                     fullWidth
-                    helperText={formik.touched.phone && formik.errors.phone}
+                    helperText={formik.touched.last_name && formik.errors.last_name}
                     label="Last Name"
-                    name="phone"
+                    name="last_name"
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     type="name"
-                    value={formik.values.lastname}
+                    value={formik.values.last_name}
                     />
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Box sx={{  position: 'relative' }}>
@@ -251,7 +190,7 @@ const FormTeacher: React.FC = () => {
                         aria-label="save"
                         color="primary"
                         sx={buttonSx}
-                        component="label"  // Indica que el componente es un label para el input de tipo archivo
+                        component="label"  
                     >
                         <input type="file" style={{ display: 'none' }} onChange={handleFileChange} />
                         {success ? <CheckIcon /> : <AccountBoxIcon/>}

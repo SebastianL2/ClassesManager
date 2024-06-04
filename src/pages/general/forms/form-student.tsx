@@ -106,7 +106,7 @@ const FormStudent: React.FC = () => {
     onSubmit: async (values, helpers) => {
       console.log("data",values)
       const save = async () => {
-        const res =await saveOne(values);
+        const res =await saveOne(values,'students');
      
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: res.message });

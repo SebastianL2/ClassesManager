@@ -5,16 +5,37 @@ import Header from '../../general/header';
 import TableUi from '../../material-ui/table-ui';
 import { palette } from '../../../theme';
 import FormClassses from '../../general/forms/form-classes';
+import { GridAlignment, GridRenderCellParams } from '@mui/x-data-grid';
 
 const Classes: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
+  interface Column {
+    field: string;
+    headerName: string;
+    type?: 'number' | 'string';
+    flex?: number;
+    width?: number;
+    align?:GridAlignment;
+    headerAlign?:GridAlignment;
+    renderCell?:(params: GridRenderCellParams) => React.ReactNode;
+    editable?:boolean;
+  }
 
+
+    const columnsSections: Column[] = [
+      { field: "id", headerName: "ID", type: "number", align: 'left', headerAlign: 'left',editable: false  },
+      { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
+      { field: "description", headerName: "Description", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: true  },
+      { field: "createdAt", headerName: "Create Date", type: "string", width: 200, align: 'left', headerAlign: 'left',editable: false  },
+
+    ];
   return (
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="CLASSES SECTION" subtitle="See all the data of classes " />
+        
       </Box>
 
       {/* GRID & CHARTS */}
@@ -63,7 +84,7 @@ const Classes: React.FC = () => {
             </Box>
           </Box>
           <Box p="5px 30px">
-            <TableUi />
+            <TableUi urlPlus='classes' columnsSections={[...columnsSections]}/>
           </Box>
         </Box>
         <Box
@@ -83,7 +104,7 @@ const Classes: React.FC = () => {
             p="15px"
           >
             <Typography color={colors.greenAccent[300]} variant="h5" fontWeight="600">
-              Add new Student 
+              Create New Class
             </Typography>
 
           </Box>

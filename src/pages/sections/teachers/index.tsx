@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import Header from '../../general/header';
 import TableUi from '../../material-ui/table-ui';
 import { palette } from '../../../theme';
 import FormTeacher from '../../general/forms/form-teacher';
+import { GridAlignment, GridRenderCellParams } from '@mui/x-data-grid';
 
 const Teachers: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
+
+  interface Column {
+    field: string;
+    headerName: string;
+    type?: 'number' | 'string';
+    flex?: number;
+    width?: number;
+    align?:GridAlignment;
+    headerAlign?:GridAlignment;
+    renderCell?:(params: GridRenderCellParams) => React.ReactNode;
+    editable?:boolean;
+  }
+
+
+    const columnsSections: Column[] = [
+      { field: "id", headerName: "ID", type: "number", align: 'left', headerAlign: 'left',editable: false  },
+      { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
+      { field: "last_name", headerName: "LastName", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: true  },
+      { field: "email", headerName: "Email", type: "string", width: 200, align: 'left', headerAlign: 'left',editable: true  },
+
+    ];
+   
 
   return (
     <Box m="20px">
@@ -63,7 +86,7 @@ const Teachers: React.FC = () => {
             </Box>
           </Box>
           <Box p="5px 30px">
-            <TableUi />
+            <TableUi urlPlus='teachers' columnsSections={[...columnsSections]}/>
           </Box>
         </Box>
         <Box
