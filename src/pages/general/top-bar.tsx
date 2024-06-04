@@ -17,7 +17,11 @@ export const Topbar: React.FC =()=>{
     const colorMode = useContext(ColorModeContext);
   
   return (
-    <Box display="flex" justifyContent="space-between" p={2}>
+    <Box
+     display="flex" 
+     justifyContent="space-between" 
+     p={2}
+     >
     
     <Box
       display="flex"

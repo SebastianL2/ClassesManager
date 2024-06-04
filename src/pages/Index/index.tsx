@@ -8,6 +8,7 @@ import { SidebarC } from '../general/side-bar';
 import Dashboard from '../sections/dashboard';
 import Teachers from '../sections/teachers';
 import Classes from '../sections/classes';
+import  AddTeachers  from '../sections/add-user-class';
 const Index: React.FC =()=>{
   const [theme,colorMode]= useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -26,6 +27,7 @@ return(
             <Route path="/students" element={<Students/>}></Route>
             <Route path="/teachers" element={<Teachers/>}></Route>
             <Route path="/classes" element={<Classes/>}></Route>
+            <Route path="/add-teachers" element={<AddTeachers/>}></Route>
            </Routes>
           </main>
         </div>
