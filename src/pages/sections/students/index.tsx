@@ -73,7 +73,7 @@ const Students: React.FC = () => {
                 fontWeight="bold"
                 color={colors.grey[300]}
               >
-                Puedes editar haciendo doble click en la casilla luego dar click icono Guardar {updateParam}
+                Puedes editar haciendo doble click en la casilla luego dar click icono Guardar 
               </Typography>
             </Box>
             <Box>
