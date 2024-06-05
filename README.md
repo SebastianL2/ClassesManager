@@ -11,7 +11,10 @@ npm run dev
 # Enviroment variables
 ```
 VITE_API_URL="public url api"
-//VITE_API_URL="http://localhost:3000/"
+
+or 
+
+VITE_API_URL="http://localhost:3000/"
 ```
 
 # React + TypeScript + Vite
