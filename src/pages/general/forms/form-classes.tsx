@@ -3,10 +3,11 @@ import * as Yup from 'yup';
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { saveOne } from '../../../API/general-http-request';
+import { useGlobalState } from '../global/GlobalStateContext';
 
 const FormClasses: React.FC = () => {
 
-
+  const {setUpdate} = useGlobalState();
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -25,10 +26,10 @@ const FormClasses: React.FC = () => {
 
     }),
     onSubmit: async (values, helpers) => {
-      console.log("data",values)
+      
       const save = async () => {
         const res =await saveOne(values,'classes');
-     
+        setUpdate(values.name);
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: res.message });
         helpers.setSubmitting(false);

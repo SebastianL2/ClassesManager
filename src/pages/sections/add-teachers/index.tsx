@@ -14,7 +14,7 @@ const AddTeachers: React.FC = () => {
   const colors = palette(theme.palette.mode);
   const { data: globalContextId } = useGlobalState();
   const [contextId, setContextId] = useState(globalContextId);
-
+  const { update: updateParam } = useGlobalState();
   interface Column {
     field: string;
     headerName: string;
@@ -123,7 +123,7 @@ const AddTeachers: React.FC = () => {
           <Box p="2vh 30px">
             {contextId ? (
                <Box >
-              <TableUi urlPlus='teachers'  urlPlus2={`classes/${contextId}/teacher`} columnsSections={columnsSections}  />
+              <TableUi urlPlus='teachers'  urlPlus2={`classes/${contextId}/teacher`} columnsSections={columnsSections}  updateParam={updateParam}/>
               <Box p="18vh 30px">
               <PopUpWindow extension='CLASS' urlPlus='classes' urlPlus2='assign-teacher' columnsSections={columnsSections}/>
               </Box>

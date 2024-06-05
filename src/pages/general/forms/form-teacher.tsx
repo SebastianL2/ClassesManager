@@ -8,6 +8,7 @@ import { green } from '@mui/material/colors';
 import Fab from '@mui/material/Fab';
 import CheckIcon from '@mui/icons-material/Check';
 import { saveOne } from '../../../API/general-http-request';
+import { useGlobalState } from '../global/GlobalStateContext';
 
 const FormTeacher: React.FC = () => {
 
@@ -15,6 +16,7 @@ const FormTeacher: React.FC = () => {
 
   const [loading, setLoading] = React.useState<boolean>(false);
   const [success, setSuccess] = React.useState<boolean>(false);
+  const {setUpdate} = useGlobalState();
   const timer = React.useRef<any>();
 
   const buttonSx: React.CSSProperties = {
@@ -107,7 +109,7 @@ const FormTeacher: React.FC = () => {
       console.log("data",values)
       const save = async () => {
         const res =await saveOne(values,'teachers');
-     
+        setUpdate(values.email);
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: res.message });
         helpers.setSubmitting(false);

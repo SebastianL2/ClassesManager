@@ -1,20 +1,21 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Box, Button, Stack, TextField, Typography } from '@mui/material';
-import React from 'react';
+import { AlertColor, Box, Button, Stack, TextField, Typography } from '@mui/material';
+import React, { useState } from 'react';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CircularProgress from '@mui/material/CircularProgress';
 import { green } from '@mui/material/colors';
 import Fab from '@mui/material/Fab';
 import CheckIcon from '@mui/icons-material/Check';
 import { saveOne } from '../../../API/general-http-request';
+import { useGlobalState } from '../global/GlobalStateContext';
 
 const FormStudent: React.FC = () => {
 
-
-
   const [loading, setLoading] = React.useState<boolean>(false);
   const [success, setSuccess] = React.useState<boolean>(false);
+  const {setUpdate} = useGlobalState();
+
   const timer = React.useRef<any>();
 
   const buttonSx: React.CSSProperties = {
@@ -107,7 +108,10 @@ const FormStudent: React.FC = () => {
       console.log("data",values)
       const save = async () => {
         const res =await saveOne(values,'students');
-     
+
+          setUpdate(values.email)
+
+        
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: res.message });
         helpers.setSubmitting(false);
@@ -235,7 +239,7 @@ const FormStudent: React.FC = () => {
                   autoComplete="off"
                 >
 
-         
+              
                 </Box>
               </Stack>
               {formik.errors.submit && (

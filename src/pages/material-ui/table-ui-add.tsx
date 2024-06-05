@@ -6,6 +6,7 @@ import { palette } from '../../theme';
 import { AddAlarm} from '@mui/icons-material';
 import { addOne, fetchData } from '../../API/general-http-request';
 import { SnackBarAlert } from './snack-bar-alert';
+import { useGlobalState } from '../general/global/GlobalStateContext';
 
 interface Column {
   field: string;
@@ -29,7 +30,7 @@ const TableUiAdd: React.FC<{urlPlus:string,urlPlus2:string,columnsSections:Colum
   const [message, setMessage] = useState("");
   const [view, setView] = useState(false);
   const [succes, setSucces] = useState<AlertColor>("success");
- 
+  const {setUpdate} = useGlobalState();
 
 
   useEffect(() => {
@@ -54,6 +55,7 @@ const addClassRow = (id:string)=>{
       res =await addOne(id,idUser,'classes',urlPlus2);
     }
       if (res && res.message) {
+        setUpdate(id);
         setMessage(res.message);
         setView(true);
       }

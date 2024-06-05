@@ -13,6 +13,7 @@ const AddStudents: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
   const { data2: contextId2 } = useGlobalState();
+  const { update: updateParam } = useGlobalState();
   interface Column {
     field: string;
     headerName: string;
@@ -117,7 +118,7 @@ const AddStudents: React.FC = () => {
           <Box p="2vh 30px">
             {contextId2 ? (
                <Box >
-              <TableUi urlPlus='students' urlPlus2={`classes/${contextId2}/students`} columnsSections={columnsSections}  />
+              <TableUi urlPlus='students' urlPlus2={`classes/${contextId2}/students`} columnsSections={columnsSections}  updateParam={updateParam}/>
               <Box p="18vh 30px">
               <PopUpWindow extension='STUDENT' urlPlus='students' urlPlus2='assign-students' columnsSections={columnsSections}/>
               </Box>

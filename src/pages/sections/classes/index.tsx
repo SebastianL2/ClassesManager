@@ -6,10 +6,12 @@ import TableUi from '../../material-ui/table-ui';
 import { palette } from '../../../theme';
 import FormClassses from '../../general/forms/form-classes';
 import { GridAlignment, GridRenderCellParams } from '@mui/x-data-grid';
+import { useGlobalState } from '../../general/global/GlobalStateContext';
 
 const Classes: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
+  const { update: updateParam } = useGlobalState();
   
   interface Column {
     field: string;
@@ -64,14 +66,14 @@ const Classes: React.FC = () => {
               <Typography
                 variant="h3"
                 fontWeight="bold"
-                color={colors.greenAccent[500]}
+                color={colors.grey[100]}
               >
                 Classes Data
               </Typography>
               <Typography
                 variant="h5"
                 fontWeight="bold"
-                color={colors.greenAccent[700]}
+                color={colors.grey[300]}
               >
                 Puedes editar haciendo doble click en la casilla luego dar click icono Guardar
               </Typography>
@@ -85,7 +87,7 @@ const Classes: React.FC = () => {
             </Box>
           </Box>
           <Box p="5px 30px">
-            <TableUi urlPlus='classes' columnsSections={[...columnsSections]}/>
+            <TableUi urlPlus='classes' columnsSections={[...columnsSections]} updateParam={updateParam}/>
           </Box>
         </Box>
         <Box
@@ -104,7 +106,7 @@ const Classes: React.FC = () => {
             }}
             p="15px"
           >
-            <Typography color={colors.greenAccent[300]} variant="h5" fontWeight="600">
+            <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
               Create New Class
             </Typography>
 

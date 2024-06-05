@@ -6,10 +6,12 @@ import TableUi from '../../material-ui/table-ui';
 import { palette } from '../../../theme';
 import FormStudent from '../../general/forms/form-student';
 import { GridAlignment, GridRenderCellParams } from '@mui/x-data-grid';
+import { useGlobalState } from '../../general/global/GlobalStateContext';
 
 const Students: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
+  const { update: updateParam } = useGlobalState();
   interface Column {
     field: string;
     headerName: string;
@@ -71,7 +73,7 @@ const Students: React.FC = () => {
                 fontWeight="bold"
                 color={colors.grey[300]}
               >
-                Puedes editar haciendo doble click en la casilla luego dar click icono Guardar
+                Puedes editar haciendo doble click en la casilla luego dar click icono Guardar {updateParam}
               </Typography>
             </Box>
             <Box>
@@ -83,7 +85,7 @@ const Students: React.FC = () => {
             </Box>
           </Box>
           <Box p="5px 30px">
-            <TableUi urlPlus='students' columnsSections={[...columnsSections]}/>
+            <TableUi urlPlus='students' columnsSections={[...columnsSections]} updateParam={updateParam}/>
           </Box>
         </Box>
         <Box
