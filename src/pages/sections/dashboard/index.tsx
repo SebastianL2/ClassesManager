@@ -1,6 +1,5 @@
 
 import { Avatar, Box, IconButton, Typography, useTheme } from "@mui/material";
-import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import Header from "../../general/header";
 import { palette } from "../../../theme";
 import { ListButton } from "../../general/list-button";
