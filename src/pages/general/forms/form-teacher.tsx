@@ -145,7 +145,7 @@ const FormTeacher: React.FC = () => {
               sx={{ mb: 2 }}
             >
               <Typography variant="h4">
-               Enter student information
+               Enter Teacher information
               </Typography>
          
             </Stack>
