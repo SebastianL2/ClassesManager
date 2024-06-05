@@ -169,7 +169,7 @@ export const SidebarC: React.FC =()=>{
           />
 
           <Item
-            title="Profile Form"
+            title="Profile"
             to="/form"
             icon={<PersonOutlinedIcon />}
             selected={selected}
