@@ -95,7 +95,7 @@ const AddStudents: React.FC = () => {
                 fontWeight="bold"
                 color={colors.grey[100]}
               >
-               Classes Assigned to The Teacher
+               Students Assigned to the class
               </Typography>
               <Typography
                 variant="h5"
@@ -119,7 +119,7 @@ const AddStudents: React.FC = () => {
                <Box >
               <TableUi urlPlus='students' urlPlus2={`classes/${contextId2}/students`} columnsSections={columnsSections}  />
               <Box p="18vh 30px">
-              <PopUpWindow urlPlus='students' urlPlus2='assign-students' columnsSections={columnsSections}/>
+              <PopUpWindow extension='STUDENT' urlPlus='students' urlPlus2='assign-students' columnsSections={columnsSections}/>
               </Box>
               </Box>
             ) : (

@@ -65,14 +65,14 @@ const Teachers: React.FC = () => {
               <Typography
                 variant="h3"
                 fontWeight="bold"
-                color={colors.greenAccent[500]}
+                color={colors.grey[100]}
               >
                 Teachers Users System
               </Typography>
               <Typography
                 variant="h5"
                 fontWeight="bold"
-                color={colors.greenAccent[700]}
+                color={colors.grey[300]}
               >
                 Puedes editar haciendo doble click en la casilla luego dar click icono Guardar
               </Typography>
@@ -105,7 +105,7 @@ const Teachers: React.FC = () => {
             }}
             p="15px"
           >
-            <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
+            <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
               New Teacher 
             </Typography>
 

@@ -125,7 +125,7 @@ const AddTeachers: React.FC = () => {
                <Box >
               <TableUi urlPlus='teachers'  urlPlus2={`classes/${contextId}/teacher`} columnsSections={columnsSections}  />
               <Box p="18vh 30px">
-              <PopUpWindow urlPlus='classes' urlPlus2='assign-teacher' columnsSections={columnsSections}/>
+              <PopUpWindow extension='CLASS' urlPlus='classes' urlPlus2='assign-teacher' columnsSections={columnsSections}/>
               </Box>
               </Box>
             ) : (

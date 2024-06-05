@@ -38,7 +38,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 
 
-export const PopUpWindow: React.FC <{urlPlus:string,urlPlus2:string,columnsSections:Column[]}> = ({urlPlus,urlPlus2,columnsSections}) => {
+export const PopUpWindow: React.FC <{extension:string,urlPlus:string,urlPlus2:string,columnsSections:Column[]}> = ({extension,urlPlus,urlPlus2,columnsSections}) => {
     const theme = useTheme();
     const colors = palette(theme.palette.mode);
     const [open, setOpen] = React.useState(false);
@@ -73,7 +73,7 @@ export const PopUpWindow: React.FC <{urlPlus:string,urlPlus2:string,columnsSecti
                 }}
               >
                 <AddAlarm sx={{ mr: "10px" }} />
-                Add Class
+                Add {extension}
               </Button>
             </Box>
         <BootstrapDialog

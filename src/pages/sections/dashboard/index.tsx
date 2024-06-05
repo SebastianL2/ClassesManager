@@ -75,13 +75,13 @@ const Dashboard = () => {
                 U
               </Avatar>
               <Box>
-                <Typography variant="h6" fontWeight="600" color="white">
+                <Typography variant="h4" fontWeight="600" color={colors.grey[100]}>
                   John Doe
                 </Typography>
-                <Typography variant="body2" color="gray">
+                <Typography variant="h5" color={colors.grey[100]}>
                   johndoe@example.com
                 </Typography>
-                <Typography variant="body2" color="white">
+                <Typography variant="h6" color={colors.grey[100]}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
                 </Typography>
               </Box>
@@ -187,7 +187,7 @@ const Dashboard = () => {
               Students
             </Typography>
           </Box>
-          <ListButton urlPlus='students' urlSrc='https://img.freepik.com/premium-photo/librarian-digital-avatar-generative-ai_934475-9092.jpg'/>
+          <ListButton urlPlus='students' urlSrc='https://cdn.pixabay.com/photo/2023/12/10/06/56/ai-generated-8440708_1280.png'/>
           
         </Box>
 
