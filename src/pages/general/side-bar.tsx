@@ -56,7 +56,7 @@ export const SidebarC: React.FC =()=>{
     collapsed={isCollapsed}
     rootStyles={{
       [`.${sidebarClasses.container}`]: {
-        backgroundColor: "transparent !important",
+        backgroundColor: `${colors.primary[400]} !important`,
       },
       [`.${sidebarClasses.container} .pro-inner-item:hover`]: {
         color: "#868dfb !important", // Cambia esto al color que desees
@@ -71,7 +71,7 @@ export const SidebarC: React.FC =()=>{
                 
                 color: active ?  `${colors.blueAccent[300]} !important` : undefined,
                 "&:hover": {
-                   backgroundColor: `${colors.primary[400]} !important`,
+                   backgroundColor: `${colors.grey[800]} !important`,
                    color:  `${colors.grey[100]} !important`,
                    borderRadius: "8px !important",
                    fontWeight: "bold !important"
@@ -181,7 +181,7 @@ export const SidebarC: React.FC =()=>{
             color={colors.grey[300]}
             sx={{ m: "15px 0 5px 20px" }}
           >
-            Charts
+            Schedule
           </Typography>
           <Item
             title="Calendar"

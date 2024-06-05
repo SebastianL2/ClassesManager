@@ -21,14 +21,15 @@ export const Topbar: React.FC =()=>{
      display="flex" 
      justifyContent="space-between" 
      p={2}
+     sx={{backgroundColor:colors.primary[400]}}
      >
     
     <Box
       display="flex"
       sx={{
-        border: `2px solid ${colors.primary[400]}`,
+        border: `2px solid ${colors.grey[200]}`,
       }}
-      borderRadius="3px"
+      borderRadius="8px"
     >
       <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
       <IconButton type="button" sx={{ p: 1 }}>
