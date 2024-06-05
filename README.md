@@ -1,3 +1,19 @@
+# Local deploy 
+```
+npm i
+
+&
+
+npm run dev
+
+```
+
+# Enviroment variables
+```
+VITE_API_URL="https://api-classses-manager.vercel.app/"
+//VITE_API_URL="http://localhost:3000/"
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
