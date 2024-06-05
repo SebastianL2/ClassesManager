@@ -7,7 +7,6 @@ import { DeleteOutline } from '@mui/icons-material';
 import SaveIcon from '@mui/icons-material/Save';
 import { deleteOne, fetchData, saveOne } from '../../API/general-http-request';
 import { SnackBarAlert } from './snack-bar-alert';
-import { useGlobalState } from '../general/global/GlobalStateContext';
 
 interface Column {
   field: string;

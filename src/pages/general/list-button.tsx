@@ -1,6 +1,6 @@
-import { Avatar, Box, Button, Divider, Grid, IconButton, List, ListItem, ListItemAvatar, ListItemText, SvgIcon, useTheme } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
-import { ColorModeContext, palette } from "../../theme";
+import {  Box, Button,IconButton, List, ListItem, ListItemAvatar, ListItemText, SvgIcon, useTheme } from "@mui/material";
+import {  useEffect, useState } from "react";
+import {  palette } from "../../theme";
 import { fetchData } from "../../API/general-http-request";
 import { useGlobalState } from "./global/GlobalStateContext";
 
@@ -19,8 +19,8 @@ export const ListButton: React.FC<{urlPlus:string,urlSrc:string}> =({urlPlus,url
     const theme = useTheme();
     const colors = palette(theme.palette.mode);
     const [dataItems, setDataItems] = useState<DataItem[]>([]);
-    const { data, setData } = useGlobalState();
-    const { data2, setData2 } = useGlobalState();
+    const {setData} = useGlobalState();
+    const {setData2} = useGlobalState();
 
   
    useEffect(() => {

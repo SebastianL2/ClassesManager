@@ -6,64 +6,6 @@ import { saveOne } from '../../../API/general-http-request';
 
 const FormClasses: React.FC = () => {
 
-  const [loading, setLoading] = React.useState<boolean>(false);
-  const [success, setSuccess] = React.useState<boolean>(false);
-  const timer = React.useRef<any>();
-
-
-
-
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0];
-    console.log("esta es tu imagen", selectedFile)
-    handleButtonClick();
-    if (selectedFile) {
-
-      const url = `https://api.cloudinary.com/v1_1/ddsuzqzgh/image/upload`;
-      
-      try {
-        const formData = new FormData();
-        formData.append("file", selectedFile);
-        formData.append('upload_preset', 'v8xxvhbs');
-        
-        const response = await fetch(url, {
-          method: 'POST',
-          body: formData
-        });
-        
-        if (response.ok) {
-          const data = await response.json();
-          console.log('Datos de la imagen: ', data);
-          formik.setFieldValue('secure_url', data.secure_url);
-          formik.setFieldValue('public_id', data.public_id);
-          setSuccess(true);
-          setLoading(false);
-        } else {
-          console.error('Error al subir la imagen a Cloudinary.');
-        }
-      } catch (error) {
-        console.error('Error en la solicitud a Cloudinary:', error);
-      }
-      
-      
-    }
-  };
- 
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(timer.current);
-    };
-  }, []);
-
-
-  const handleButtonClick = () => {
-    if (!loading) {
-      setSuccess(false);
-      setLoading(true);
-    
-    }
-  };
- 
 
   const formik = useFormik({
     initialValues: {

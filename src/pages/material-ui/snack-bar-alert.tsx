@@ -11,6 +11,10 @@ export  const SnackBarAlert = ({ message,view,severity }: { message: string,view
     if (reason === 'clickaway') {
       return;
     }
+  
+    if (event) {
+      event.preventDefault();
+    }
     
     setOpen(false);
   };

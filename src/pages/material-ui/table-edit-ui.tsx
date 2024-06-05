@@ -19,7 +19,6 @@ import {
   GridRowModel,
   GridRowEditStopReasons,
   GridSlots,
-  GridValidRowModel,
 } from '@mui/x-data-grid';
 import { fetchData } from '../../API/estudents';
 import { v4 as uuidv4 } from 'uuid';
@@ -37,13 +36,7 @@ interface EditToolbarProps {
     newModel: (oldModel: GridRowModesModel) => GridRowModesModel,
   ) => void;
 }
-interface Student {
-    id: string;
-    name: string;
-    last_name: string;
-    email: string;
-    isNew?: boolean;
-  }
+
 function EditToolbar(props: EditToolbarProps) {
   const { setRows, setRowModesModel } = props;
 
@@ -71,7 +64,6 @@ export default function TableEditUi() {
     const [dataStudents, setDataStudents] = useState([]);
     const [rows, setRows] = React.useState<GridRowsProp>([]);
     const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
-    const [updatedRow, setUpdatedRow] = useState<Student | null>(null);
     useEffect(() => {
       const getData = async () => {
         const data = await fetchData();
@@ -82,12 +74,7 @@ export default function TableEditUi() {
     }, [dataStudents]);
 
 
-    interface apiPropsModifiers{
-        id:string;
-        name:string;
-        last_name:string;
-        email:string;
-       }
+
   const handleRowEditStop: GridEventListener<'rowEditStop'> = (params, event) => {
     if (params.reason === GridRowEditStopReasons.rowFocusOut) {
       event.defaultMuiPrevented = true;
@@ -131,18 +118,9 @@ export default function TableEditUi() {
   const handleRowModesModelChange = (newRowModesModel: GridRowModesModel) => {
     setRowModesModel(newRowModesModel);
   };
-  const updateRow = (data:GridValidRowModel)=>{
-    
-    
-  }
 
-  useEffect(() => {
-    if (updatedRow) {
-     
-      updateRow(updatedRow); 
-      setUpdatedRow(null); 
-    }
-  }, [updatedRow]);
+
+
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 180, editable: true },
     { field: 'name', headerName: 'Name', width: 80, editable: true },
@@ -169,7 +147,7 @@ export default function TableEditUi() {
       width: 100,
       cellClassName: 'actions',
      
-      getActions: ({ id,row }) => {
+      getActions: ({ id }) => {
         const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
         const handleSaveAndUpdate = async (id: GridRowId, event: React.MouseEvent<HTMLButtonElement | HTMLLIElement>) => {
             event.preventDefault();
