@@ -6,11 +6,12 @@ import TableUi from '../../material-ui/table-ui';
 import { palette } from '../../../theme';
 import FormTeacher from '../../general/forms/form-teacher';
 import { GridAlignment, GridRenderCellParams } from '@mui/x-data-grid';
+import { useGlobalState } from '../../general/global/GlobalStateContext';
 
 const Teachers: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
-
+  const { update: updateParam } = useGlobalState();
   interface Column {
     field: string;
     headerName: string;
@@ -86,7 +87,7 @@ const Teachers: React.FC = () => {
             </Box>
           </Box>
           <Box p="5px 30px">
-            <TableUi urlPlus='teachers' columnsSections={[...columnsSections]}/>
+            <TableUi urlPlus='teachers' columnsSections={[...columnsSections]} updateParam={updateParam}/>
           </Box>
         </Box>
         <Box
