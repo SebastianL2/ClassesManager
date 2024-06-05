@@ -10,7 +10,7 @@ npm run dev
 
 # Enviroment variables
 ```
-VITE_API_URL="https://api-classses-manager.vercel.app/"
+VITE_API_URL="public url api"
 //VITE_API_URL="http://localhost:3000/"
 ```
 
