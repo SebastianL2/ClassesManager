@@ -6,12 +6,14 @@ import { ListButton } from "../../general/list-button";
 import TableUi from "../../material-ui/table-ui";
 import { GridAlignment, GridRenderCellParams } from "@mui/x-data-grid";
 import { AddReaction } from "@mui/icons-material";
+import { useGlobalState } from "../../general/global/GlobalStateContext";
 
 
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
+  const { update: updateParam } = useGlobalState();
   interface Column {
     field: string;
     headerName: string;
@@ -164,7 +166,7 @@ const Dashboard = () => {
             </Box>
           </Box>
           <Box height="250px" p={4}>
-          <TableUi urlPlus='classes' columnsSections={[...columnsSections]}/>
+          <TableUi urlPlus='classes' columnsSections={[...columnsSections]} updateParam={updateParam}/>
           </Box>
         </Box>
         <Box
