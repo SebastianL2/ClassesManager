@@ -7,16 +7,18 @@ interface apiPropsModifiers{
 }
 
 export const fetchData = async (urlPlus:string) => {
+  console.log('aaaaaaa');
+  
   try {
     
     
     const response = await fetch(api+urlPlus);
     const res = await response.json();
-    console.log(res);
+   
     
     return res;
   } catch (error) {
-    console.error('There was a problem with your fetch operation:', error);
+   
   }
 };
 
@@ -30,11 +32,11 @@ export const saveOne = async (data:apiPropsModifiers,urlPlus:string) => {
         body:JSON.stringify(data)
     });
     const res = await response.json();
-    console.log(res);
+  
     
     return res;
   } catch (error) {
-    console.error('There was a problem with your fetch operation:', error);
+ 
   }
 };
 
@@ -47,17 +49,17 @@ export const deleteOne = async (id:string,urlPlus:string) => {
         }
     });
     const res = await response.json();
-    console.log(res);
     
     return res;
   } catch (error) {
-    console.error('There was a problem with your fetch operation:', error);
+   
   }
 };
 
-export const addOne = async (idClass:string,idUser:string,urlPlus:string) => {
+export const addOne = async (idClass:string,idUser:string,urlPlus:string,urlPlus2:string) => {
   try {
-    const response = await fetch(`${api}${urlPlus}/${idClass}/assign-teacher`,{
+    
+    const response = await fetch(`${api}${urlPlus}/${idClass}/${urlPlus2}`,{
         method:'PATCH',
         headers:{
             'content-Type':'application/json'
@@ -67,11 +69,11 @@ export const addOne = async (idClass:string,idUser:string,urlPlus:string) => {
         })
     });
     const res = await response.json();
-    console.log(res);
+    
     
     return res;
   } catch (error) {
-    console.error('There was a problem with your fetch operation:', error);
+   
   }
 };
 
@@ -86,11 +88,11 @@ export const updateOne = async (data:apiPropsModifiers,urlPlus:string) => {
         body:JSON.stringify(data)
     });
     const res = await response.json();
-    console.log(res);
+    
     
     return res;
   } catch (error) {
-    console.error('There was a problem with your  operation:', error);
+   
   }
 };
 
@@ -98,10 +100,9 @@ export const deleteMany = async () => {
     try {
       const response = await fetch(api);
       const res = await response.json();
-      console.log(res);
       
       return res;
     } catch (error) {
-      console.error('There was a problem with your fetch operation:', error);
+     
     }
   };

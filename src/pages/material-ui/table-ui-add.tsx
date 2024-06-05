@@ -6,6 +6,7 @@ import { palette } from '../../theme';
 import { AddAlarm} from '@mui/icons-material';
 import { addOne, fetchData } from '../../API/general-http-request';
 import { SnackBarAlert } from './snack-bar-alert';
+import { useGlobalState } from '../general/global/GlobalStateContext';
 
 interface Column {
   field: string;
@@ -20,7 +21,7 @@ interface Column {
 }
 
 
-const TableUiAdd: React.FC<{urlPlus:string,columnsSections:Column[],idUser:string}> = ({urlPlus,columnsSections,idUser}) => {
+const TableUiAdd: React.FC<{urlPlus:string,urlPlus2:string,columnsSections:Column[],idUser:string}> = ({urlPlus,urlPlus2,columnsSections,idUser}) => {
 
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
@@ -29,6 +30,7 @@ const TableUiAdd: React.FC<{urlPlus:string,columnsSections:Column[],idUser:strin
   const [message, setMessage] = useState("");
   const [view, setView] = useState(false);
   const [succes, setSucces] = useState<AlertColor>("success");
+  const { data: contextId } = useGlobalState();
 
   interface apiPropsModifiers{
     id:string;
@@ -37,28 +39,35 @@ const TableUiAdd: React.FC<{urlPlus:string,columnsSections:Column[],idUser:strin
     email:string;
    }
   useEffect(() => {
-
+    
     const getData = async () => {
       const data = await fetchData(urlPlus);
       setDataStudents(data);
       
     };
     getData();
-  }, [urlPlus]);
+  }, [urlPlus,view]);
 
 const addClassRow = (id:string)=>{
   setView(false);
   setSucces("success");
   const request = async () => {
-    const res =await addOne(id,idUser,urlPlus,);
-    if (res && res.message) {
-      setMessage("dasfsaf");
-      setView(true);
+    let res;
+    if(urlPlus2=="assign-students"){
+       res =await addOne(idUser,id,'classes',urlPlus2);
+       
+    }else{
+      res =await addOne(id,idUser,'classes',urlPlus2);
     }
-    if (!res.succes) {
-      setSucces("error");
-    } 
-  }
+      if (res && res.message) {
+        setMessage(res.message);
+        setView(true);
+      }
+      if (!res.succes) {
+        setSucces("error");
+      } 
+    }
+
   request()
 }
 
@@ -124,7 +133,7 @@ const addClassRow = (id:string)=>{
         editMode="cell"
         sx={{
           "& .MuiDataGrid-virtualScroller": {
-            maxHeight: 250, // Altura máxima del scroll interno del DataGrid
+            maxHeight: 250, 
           },
         }}
       />

@@ -160,14 +160,14 @@ export const SidebarC: React.FC =()=>{
           </Typography>
           <Item
             title="Add Teachers"
-            to="/add-teachers"
+            to="/add/teachers"
             icon={<SchoolOutlined />}
             selected={selected}
             setSelected={setSelected}
           />
           <Item
             title="Add Sttudents"
-            to="/calendar"
+            to="/add/students"
             icon={<GroupAddOutlined />}
             selected={selected}
             setSelected={setSelected}

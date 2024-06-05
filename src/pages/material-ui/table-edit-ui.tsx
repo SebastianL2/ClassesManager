@@ -132,13 +132,13 @@ export default function TableEditUi() {
     setRowModesModel(newRowModesModel);
   };
   const updateRow = (data:GridValidRowModel)=>{
-    console.log(`Updating row with id: ${data.name}  ${data.id}`);
+    
     
   }
 
   useEffect(() => {
     if (updatedRow) {
-      console.log('Updated row:', updatedRow);
+     
       updateRow(updatedRow); 
       setUpdatedRow(null); 
     }

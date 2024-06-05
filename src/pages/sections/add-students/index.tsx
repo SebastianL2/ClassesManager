@@ -9,10 +9,10 @@ import { useGlobalState } from '../../general/global/GlobalStateContext';
 import { PopUpWindow } from '../../material-ui/pop-up-ui';
 import TableUi from '../../material-ui/table-ui';
 
-const AddTeachers: React.FC = () => {
+const AddStudents: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
-  const { data: contextId } = useGlobalState();
+  const { data2: contextId2 } = useGlobalState();
   interface Column {
     field: string;
     headerName: string;
@@ -30,9 +30,10 @@ const AddTeachers: React.FC = () => {
 
 
     const columnsSections: Column[] = [
-      { field: "id", headerName: "ID", type: "number", align: 'left', width: 150, headerAlign: 'left',editable: false  },
-      { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
-      { field: "description", headerName: "Description", type: "string", width: 200, align: 'left', headerAlign: 'left',editable: true  },
+      { field: "id", headerName: "ID", type: "number", align: 'left', width: 100, headerAlign: 'left',editable: false  },
+      { field: "name", headerName: "Name", align: 'left', width: 80, headerAlign: 'left',editable: true },
+      { field: "last_name", headerName: "Last Name", type: "string", width: 80, align: 'left', headerAlign: 'left',editable: true  },
+      { field: "email", headerName: "Eamil adress", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: true  },
 
     ];
   return (
@@ -66,13 +67,13 @@ const AddTeachers: React.FC = () => {
             }}
             p="15px"
           >
-            <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
-              Teachers
+            <Typography color={colors.grey[100]} variant="h4" fontWeight="600">
+              Students
             </Typography>
 
           </Box>
           
-            <ListButton/>
+            <ListButton urlPlus='classes' urlSrc='https://png.pngtree.com/png-vector/20190803/ourmid/pngtree-calculator-calculation-math-progress-graph-flat-color-icon-v-png-image_1648951.jpg'/>
           
         </Box>
         <Box
@@ -114,11 +115,11 @@ const AddTeachers: React.FC = () => {
             </Box>
           </Box>
           <Box p="2vh 30px">
-            {contextId ? (
+            {contextId2 ? (
                <Box >
-              <TableUi urlPlus={`classes/${contextId}/teacher`} columnsSections={columnsSections}  />
+              <TableUi urlPlus='students' urlPlus2={`classes/${contextId2}/students`} columnsSections={columnsSections}  />
               <Box p="18vh 30px">
-              <PopUpWindow />
+              <PopUpWindow urlPlus='students' urlPlus2='assign-students' columnsSections={columnsSections}/>
               </Box>
               </Box>
             ) : (
@@ -143,4 +144,4 @@ const AddTeachers: React.FC = () => {
   );
 }
 
-export default AddTeachers;
+export default AddStudents;

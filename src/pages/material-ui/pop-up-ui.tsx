@@ -37,13 +37,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
  
 
 
-    const columnsSections: Column[] = [
-      { field: "id", headerName: "ID", type: "number", align: 'left', width: 150, headerAlign: 'left',editable: false  },
-      { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
-      { field: "description", headerName: "Description", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: true  },
 
-    ];
-export const PopUpWindow: React.FC =()=>{
+export const PopUpWindow: React.FC <{urlPlus:string,urlPlus2:string,columnsSections:Column[]}> = ({urlPlus,urlPlus2,columnsSections}) => {
     const theme = useTheme();
     const colors = palette(theme.palette.mode);
     const [open, setOpen] = React.useState(false);
@@ -97,7 +92,7 @@ export const PopUpWindow: React.FC =()=>{
         >
         <DialogTitle sx={{ m: 0, p: 2 }}>
           <Typography variant="h2" color={colors.grey[100]}>
-            Add new Class to A teacher
+            Add new Class to A teacher 
           </Typography>
         </DialogTitle>
           <IconButton
@@ -114,7 +109,7 @@ export const PopUpWindow: React.FC =()=>{
             <CloseIcon />
           </IconButton>
           <DialogContent dividers>
-          <TableUiAdd urlPlus={`classes`} columnsSections={columnsSections}  idUser={contextId} />
+          <TableUiAdd urlPlus={urlPlus} urlPlus2={urlPlus2} columnsSections={columnsSections}  idUser={contextId} />
           </DialogContent>
           <DialogActions>
           <Button autoFocus onClick={handleClose} variant="contained" size="large" color="primary">

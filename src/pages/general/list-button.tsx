@@ -15,18 +15,19 @@ interface DataItem {
   email?: string;
 }
 
-export const ListButton: React.FC =()=>{
+export const ListButton: React.FC<{urlPlus:string,urlSrc:string}> =({urlPlus,urlSrc})=>{
     const theme = useTheme();
     const colors = palette(theme.palette.mode);
     const [dataItems, setDataItems] = useState<DataItem[]>([]);
     const { data, setData } = useGlobalState();
+    const { data2, setData2 } = useGlobalState();
 
   
    useEffect(() => {
     const getData = async () => {
-      const data = await fetchData('teachers');
+      const data = await fetchData(urlPlus);
       setDataItems(data);
-   
+      
       
       
     };
@@ -35,8 +36,10 @@ export const ListButton: React.FC =()=>{
 
   const saveId = async (id: string) => {
     setData("");
+    setData2("");
     
     setData(id);
+    setData2(id);
   };
   return (
 
@@ -53,7 +56,7 @@ export const ListButton: React.FC =()=>{
               <ListItemAvatar>
                 <Box
                   component="img"
-                  src="https://img.freepik.com/premium-photo/librarian-digital-avatar-generative-ai_934475-9092.jpg"
+                  src={urlSrc}
                   sx={{
                     borderRadius: 1,
                     height: 48,
@@ -63,7 +66,7 @@ export const ListButton: React.FC =()=>{
               </ListItemAvatar>
 
               <ListItemText
-                primary={dataItem.name+' '+dataItem.last_name}
+                primary={dataItem.name+' '+ (dataItem.last_name ? ' ' + dataItem.last_name : '')}
                 primaryTypographyProps={{ 
                   variant: 'h3', 
                   color: `${colors.grey[100]}`,     

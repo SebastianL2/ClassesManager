@@ -7,7 +7,6 @@ import { DeleteOutline } from '@mui/icons-material';
 import SaveIcon from '@mui/icons-material/Save';
 import { deleteOne, fetchData, saveOne } from '../../API/general-http-request';
 import { SnackBarAlert } from './snack-bar-alert';
-import { useGlobalState } from '../general/global/GlobalStateContext';
 
 interface Column {
   field: string;
@@ -22,7 +21,7 @@ interface Column {
 }
 
 
-const TableUi: React.FC<{urlPlus:string,urlPlus2?:string,columnsSections:Column[]}> = ({urlPlus,urlPlus2,columnsSections}) => {
+const TableUi2: React.FC<{urlPlus:string,urlPlus2?:string,columnsSections:Column[]}> = ({urlPlus,urlPlus2,columnsSections}) => {
 
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
@@ -31,8 +30,7 @@ const TableUi: React.FC<{urlPlus:string,urlPlus2?:string,columnsSections:Column[
   const [message, setMessage] = useState("");
   const [view, setView] = useState(false);
   const [succes, setSucces] = useState<AlertColor>("success");
-  
-  
+
   interface apiPropsModifiers{
     id:string;
     name:string;
@@ -51,7 +49,7 @@ const TableUi: React.FC<{urlPlus:string,urlPlus2?:string,columnsSections:Column[
       setDataStudents(data);
     };
     getData();
-  }, [urlPlus2,view]);
+  }, [urlPlus,dataStudents]);
 
 const deleteRow = (id:string)=>{
   setView(false);
@@ -160,4 +158,4 @@ const updateRow = (data:apiPropsModifiers)=>{
   );
 }
 
-export default TableUi;
+export default TableUi2;
