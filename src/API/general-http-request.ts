@@ -8,7 +8,7 @@ interface apiPropsModifiers{
 
 export const fetchData = async (urlPlus:string) => {
   try {
-    console.log("url",urlPlus);
+    
     
     const response = await fetch(api+urlPlus);
     const res = await response.json();
@@ -45,6 +45,26 @@ export const deleteOne = async (id:string,urlPlus:string) => {
         headers:{
             'content-Type':'application/json'
         }
+    });
+    const res = await response.json();
+    console.log(res);
+    
+    return res;
+  } catch (error) {
+    console.error('There was a problem with your fetch operation:', error);
+  }
+};
+
+export const addOne = async (idClass:string,idUser:string,urlPlus:string) => {
+  try {
+    const response = await fetch(`${api}${urlPlus}/${idClass}/assign-teacher`,{
+        method:'PATCH',
+        headers:{
+            'content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          id: idUser
+        })
     });
     const res = await response.json();
     console.log(res);

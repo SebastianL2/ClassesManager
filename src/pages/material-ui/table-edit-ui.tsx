@@ -79,7 +79,7 @@ export default function TableEditUi() {
         setRows(data);
       };
       getData();
-    }, []);
+    }, [dataStudents]);
 
 
     interface apiPropsModifiers{
@@ -139,8 +139,8 @@ export default function TableEditUi() {
   useEffect(() => {
     if (updatedRow) {
       console.log('Updated row:', updatedRow);
-      updateRow(updatedRow); // Ejecuta updateRow cuando updatedRow cambie
-      setUpdatedRow(null); // Resetea el estado updatedRow después de la actualización
+      updateRow(updatedRow); 
+      setUpdatedRow(null); 
     }
   }, [updatedRow]);
   const columns: GridColDef[] = [

@@ -2,6 +2,7 @@ import { Avatar, Box, Button, Divider, Grid, IconButton, List, ListItem, ListIte
 import { useContext, useEffect, useState } from "react";
 import { ColorModeContext, palette } from "../../theme";
 import { fetchData } from "../../API/general-http-request";
+import { useGlobalState } from "./global/GlobalStateContext";
 
 interface DataItem {
   id: string;
@@ -17,12 +18,8 @@ interface DataItem {
 export const ListButton: React.FC =()=>{
     const theme = useTheme();
     const colors = palette(theme.palette.mode);
-    const colorMode = useContext(ColorModeContext);
     const [dataItems, setDataItems] = useState<DataItem[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [id, setId] = useState('');
-    const [url, setUrl] = useState('');
-    const [galery, setGalery] = useState([]);
+    const { data, setData } = useGlobalState();
 
   
    useEffect(() => {
@@ -37,9 +34,9 @@ export const ListButton: React.FC =()=>{
   }, []);
 
   const saveId = async (id: string) => {
+    setData("");
     
-    localStorage.setItem('selectedId', id);
-   
+    setData(id);
   };
   return (
 

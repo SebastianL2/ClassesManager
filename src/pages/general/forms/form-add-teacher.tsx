@@ -4,7 +4,7 @@ import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { saveOne } from '../../../API/general-http-request';
 
-const FormClasses: React.FC = () => {
+const FormAddTeacher: React.FC = () => {
 
   const [loading, setLoading] = React.useState<boolean>(false);
   const [success, setSuccess] = React.useState<boolean>(false);
@@ -198,4 +198,4 @@ const FormClasses: React.FC = () => {
 
 
 
-export default FormClasses;
+export default FormAddTeacher;

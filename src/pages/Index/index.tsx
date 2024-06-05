@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Routes, Route } from "react-router-dom";
 import { ColorModeContext, useMode } from '../../theme';
 import { CssBaseline, ThemeProvider } from '@mui/material';
@@ -9,14 +9,15 @@ import Dashboard from '../sections/dashboard';
 import Teachers from '../sections/teachers';
 import Classes from '../sections/classes';
 import  AddTeachers  from '../sections/add-user-class';
+import { GlobalStateProvider } from '../general/global/GlobalStateContext';
 const Index: React.FC =()=>{
   const [theme,colorMode]= useMode();
-  const [isSidebar, setIsSidebar] = useState(true);
 return(
+  
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline/>
-        
+        <GlobalStateProvider>
         <div className='app'>
         <SidebarC />
           <main className='content'>
@@ -31,6 +32,7 @@ return(
            </Routes>
           </main>
         </div>
+        </GlobalStateProvider>
       </ThemeProvider>
     </ColorModeContext.Provider>
 

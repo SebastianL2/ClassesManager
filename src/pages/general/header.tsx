@@ -9,7 +9,7 @@ interface HeaderProps {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
   return (
-    <Box mb="30px">
+    <Box mb="15px">
       <Typography
         variant="h2"
         color={colors.grey[100]}

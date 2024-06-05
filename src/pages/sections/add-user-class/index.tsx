@@ -1,15 +1,18 @@
-import React, { useEffect, useState }  from 'react';
+import React  from 'react';
 import { Box, Grid, IconButton, Skeleton, Stack, Typography, useTheme } from '@mui/material';
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import Header from '../../general/header';
 import { palette } from '../../../theme';
 import { GridAlignment, GridRenderCellParams } from '@mui/x-data-grid';
 import { ListButton } from '../../general/list-button';
+import { useGlobalState } from '../../general/global/GlobalStateContext';
+import { PopUpWindow } from '../../material-ui/pop-up-ui';
 import TableUi from '../../material-ui/table-ui';
 
 const AddTeachers: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
+  const { data: contextId } = useGlobalState();
   interface Column {
     field: string;
     headerName: string;
@@ -21,18 +24,15 @@ const AddTeachers: React.FC = () => {
     renderCell?:(params: GridRenderCellParams) => React.ReactNode;
     editable?:boolean;
   }
-  const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  useEffect(() => {
-    const id = localStorage.getItem('selectedId');
-    setSelectedId(id);
-  }, []);
+
+ 
+
 
     const columnsSections: Column[] = [
-      { field: "id", headerName: "ID", type: "number", align: 'left', headerAlign: 'left',editable: false  },
+      { field: "id", headerName: "ID", type: "number", align: 'left', width: 150, headerAlign: 'left',editable: false  },
       { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
-      { field: "last_name", headerName: "LastName", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: true  },
-      { field: "email", headerName: "Email", type: "string", width: 200, align: 'left', headerAlign: 'left',editable: true  },
+      { field: "description", headerName: "Description", type: "string", width: 200, align: 'left', headerAlign: 'left',editable: true  },
 
     ];
   return (
@@ -46,7 +46,7 @@ const AddTeachers: React.FC = () => {
       <Box
         display="grid"
         gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="30vh" 
+        gridAutoRows="34vh" 
         gap="20px"
       >
         {/* ROW 2 */}
@@ -66,8 +66,8 @@ const AddTeachers: React.FC = () => {
             }}
             p="15px"
           >
-            <Typography color={colors.greenAccent[300]} variant="h5" fontWeight="600">
-              Add new Student 
+            <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
+              Teachers
             </Typography>
 
           </Box>
@@ -92,14 +92,14 @@ const AddTeachers: React.FC = () => {
               <Typography
                 variant="h3"
                 fontWeight="bold"
-                color={colors.greenAccent[500]}
+                color={colors.grey[100]}
               >
-                Students Users System
+               Classes Assigned to The Teacher
               </Typography>
               <Typography
                 variant="h5"
                 fontWeight="bold"
-                color={colors.greenAccent[700]}
+                color={colors.grey[300]}
               >
                 Puedes editar haciendo doble click en la casilla luego dar click icono Guardar
                 
@@ -113,28 +113,33 @@ const AddTeachers: React.FC = () => {
               </IconButton>
             </Box>
           </Box>
-          <Box p="15vh 30px">
-          {selectedId  ? (
-               <TableUi columnsSections={columnsSections} urlPlus='classes'/>
+          <Box p="2vh 30px">
+            {contextId ? (
+               <Box >
+              <TableUi urlPlus={`classes/${contextId}/teacher`} columnsSections={columnsSections}  />
+              <Box p="18vh 30px">
+              <PopUpWindow />
+              </Box>
+              </Box>
             ) : (
               <Grid item xs={18} md={18} lg={18}>
-           
-              <Box display="flex" justifyContent="center"  height="70vh">
-                <Stack spacing={1}>
-         
-                  <Skeleton variant="rectangular" width={290} height={160} />
-                </Stack>
-              </Box>
-           
-          </Grid>
+                <Box display="flex" justifyContent="center" height="70vh">
+                  <Stack spacing={1}>
+                    <Skeleton variant="rectangular" width={'90vh'} height={'54vh'} />
+                  </Stack>
+                </Box>
+              </Grid>
             )}
+  
+          </Box>
 
           
-          </Box>
         </Box>
  
       </Box>
     </Box>
+
+    
   );
 }
 

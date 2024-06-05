@@ -6,11 +6,12 @@ export  const SnackBarAlert = ({ message,view,severity }: { message: string,view
   const [open, setOpen] = React.useState(view);
 
  
+  
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
-
+    
     setOpen(false);
   };
 
