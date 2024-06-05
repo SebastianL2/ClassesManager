@@ -7,14 +7,10 @@ interface apiPropsModifiers{
 }
 
 export const fetchData = async (urlPlus:string) => {
-  console.log('aaaaaaa');
-  
   try {
-    
     
     const response = await fetch(api+urlPlus);
     const res = await response.json();
-   
     
     return res;
   } catch (error) {

@@ -53,8 +53,10 @@ const TableUi: React.FC<{urlPlus:string,urlPlus2?:string,columnsSections:Column[
     getData();
   }, [urlPlus2,view]);
 
+
+
 const deleteRow = (id:string)=>{
-  setView(false);
+  
   setSucces("success");
   setDataStudents(dataStudents.filter((row: any) => row.id !== id));
   const request = async () => {

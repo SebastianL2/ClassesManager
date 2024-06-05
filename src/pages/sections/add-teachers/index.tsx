@@ -46,7 +46,7 @@ const AddTeachers: React.FC = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="TEACHERS SECTION" subtitle="See all the data of students " />
+        <Header title="TEACHERS SECTION" subtitle="See all the data of teacher classes " />
       </Box>
 
       {/* GRID & CHARTS */}
@@ -104,11 +104,11 @@ const AddTeachers: React.FC = () => {
                Classes Assigned to The Teacher
               </Typography>
               <Typography
-                variant="h5"
+                variant="h6"
                 fontWeight="bold"
                 color={colors.grey[300]}
               >
-                Puedes editar haciendo doble click en la casilla luego dar click icono Guardar
+                Para ver las clasees relacionadas a los profesores dar click en alguno de ellos dela izquierda
                 
               </Typography>
             </Box>
