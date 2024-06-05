@@ -131,7 +131,7 @@ const Dashboard = () => {
       <Box
       display="grid"
       gridTemplateColumns="repeat(12, 1fr)"
-      gridAutoRows="24vh"
+      gridAutoRows="29vh"
       gap="20px"
       sx={{ mt: 4, borderRadius: 34 }} 
     >

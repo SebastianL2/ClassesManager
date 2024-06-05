@@ -108,7 +108,7 @@ export const SidebarC: React.FC =()=>{
         </MenuItem>
 
 
-        <Box  minHeight="88vh" paddingLeft={isCollapsed ? undefined : "10%"}>
+        <Box  minHeight="115vh" paddingLeft={isCollapsed ? undefined : "10%"}>
           <Item
             title="Dashboard"
             to="/"
