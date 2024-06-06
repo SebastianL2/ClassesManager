@@ -56,9 +56,7 @@ const AddTeachers: React.FC = () => {
     },
   ];
     const columnsSections: Column[] = [
-      { field: "id", headerName: "ID", type: "number", align: 'left', width: 80, headerAlign: 'left',editable: false  },
-      { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
-      { field: "description", headerName: "Description", type: "string", width: 150, align: 'left', headerAlign: 'left',editable: true  },
+      { field: "id", headerName: "ID", type: "number", align: 'left', headerAlign: 'left', width: 140,editable: false  },
       {
         field: 'url',
         headerName: 'cover',
@@ -73,6 +71,10 @@ const AddTeachers: React.FC = () => {
         </Box>
         ),
       },
+      { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
+      { field: "description", headerName: "Description", type: "string", width: 130, align: 'left', headerAlign: 'left',editable: true  },
+      { field: "createdAt", headerName: "Create Date", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: false  },
+
     ];
   return (
     <Box m="20px">
