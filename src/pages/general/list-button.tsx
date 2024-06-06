@@ -1,4 +1,4 @@
-import {  Box, Button,IconButton, List, ListItem, ListItemAvatar, ListItemText, SvgIcon, useTheme } from "@mui/material";
+import {  Avatar, Box, Button,IconButton, List, ListItem, ListItemAvatar, ListItemText, SvgIcon, useTheme } from "@mui/material";
 import {  useEffect, useState } from "react";
 import {  palette } from "../../theme";
 import { fetchData } from "../../API/general-http-request";
@@ -9,13 +9,11 @@ interface DataItem {
   name?: string;
   description?: string;
   last_name?: string;
-  images?: {
-      secure_url: string;
-    };
+  url?:string;
   email?: string;
 }
 
-export const ListButton: React.FC<{urlPlus:string,urlSrc:string}> =({urlPlus,urlSrc})=>{
+export const ListButton: React.FC<{urlPlus:string}> =({urlPlus})=>{
     const theme = useTheme();
     const colors = palette(theme.palette.mode);
     const [dataItems, setDataItems] = useState<DataItem[]>([]);
@@ -54,15 +52,7 @@ export const ListButton: React.FC<{urlPlus:string,urlSrc:string}> =({urlPlus,url
           >
             <ListItem divider={hasDivider} key={dataItem.id} alignItems="center">
               <ListItemAvatar>
-                <Box
-                  component="img"
-                  src={urlSrc}
-                  sx={{
-                    borderRadius: 1,
-                    height: 48,
-                    width: 48,
-                  }}
-                />
+              <Avatar src={dataItem.url} alt="Avatar" sx={{ width: 52, height: 52, borderRadius: 2 }}/>
               </ListItemAvatar>
 
               <ListItemText

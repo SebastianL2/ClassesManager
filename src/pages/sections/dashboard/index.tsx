@@ -31,8 +31,21 @@ const Dashboard = () => {
       { field: "id", headerName: "ID", type: "number", align: 'left', headerAlign: 'left',editable: false  },
       { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
       { field: "description", headerName: "Description", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: true  },
-      { field: "createdAt", headerName: "Create Date", type: "string", width: 200, align: 'left', headerAlign: 'left',editable: false  },
-
+      { field: "createdAt", headerName: "Create Date", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: false  },
+      {
+        field: 'url',
+        headerName: 'cover',
+        type: 'string',
+        width: 60,
+        align: 'left',
+        headerAlign: 'left',
+        editable: false,
+        renderCell: (params) => (
+        <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%">
+          <Avatar src={params.value} alt="Avatar" sx={{ width: 36, height: 36, borderRadius: 2 }}/>
+        </Box>
+        ),
+      },
     ];
   return (
     <Box m="20px">
@@ -121,7 +134,7 @@ const Dashboard = () => {
               Teachers
             </Typography>
           </Box>
-          <ListButton urlPlus='teachers' urlSrc='https://img.freepik.com/premium-photo/librarian-digital-avatar-generative-ai_934475-9092.jpg'/>
+          <ListButton urlPlus='teachers' />
           
         </Box>
 
@@ -189,7 +202,7 @@ const Dashboard = () => {
               Students
             </Typography>
           </Box>
-          <ListButton urlPlus='students' urlSrc='https://cdn.pixabay.com/photo/2023/12/10/06/56/ai-generated-8440708_1280.png'/>
+          <ListButton urlPlus='students'/>
           
         </Box>
 

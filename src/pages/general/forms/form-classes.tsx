@@ -2,16 +2,85 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import { green } from '@mui/material/colors';
+import Fab from '@mui/material/Fab';
+import CheckIcon from '@mui/icons-material/Check';
 import { saveOne } from '../../../API/general-http-request';
 import { useGlobalState } from '../global/GlobalStateContext';
+import { Class } from '@mui/icons-material';
 
 const FormClasses: React.FC = () => {
 
+
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [success, setSuccess] = React.useState<boolean>(false);
   const {setUpdate} = useGlobalState();
+
+  const timer = React.useRef<any>();
+
+  const buttonSx: React.CSSProperties = {
+    ...(success && {
+      backgroundColor: green[500],
+      '&:hover': {
+        backgroundColor: green[700],
+      },
+    }),
+  };
+
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0];
+    console.log("esta es tu imagen", selectedFile)
+    handleButtonClick();
+    if (selectedFile) {
+
+      const url = `https://api.cloudinary.com/v1_1/ddsuzqzgh/image/upload`;
+      
+      try {
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+        formData.append('upload_preset', 'v8xxvhbs');
+        
+        const response = await fetch(url, {
+          method: 'POST',
+          body: formData
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Datos de la imagen: ', data);
+          formik.setFieldValue('url', data.secure_url);
+          setSuccess(true);
+          setLoading(false);
+        } else {
+          console.error('Error al subir la imagen a Cloudinary.');
+        }
+      } catch (error) {
+        console.error('Error en la solicitud a Cloudinary:', error);
+      }
+      
+      
+    }
+  };
+ 
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
+
+  const handleButtonClick = () => {
+    if (!loading) {
+      setSuccess(false);
+      setLoading(true);
+    
+    }
+  };
   const formik = useFormik({
     initialValues: {
       name: '',
       description: '',
+      url:'',
       submit: null
     },
     validationSchema: Yup.object({
@@ -98,18 +167,45 @@ const FormClasses: React.FC = () => {
                   value={formik.values.description}
                 />
 
-                
-  
-
                 <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': {  width: '50ch' },
-                  }}
-                  autoComplete="off"
+                    component="form"
+                    sx={{
+                      
+                    '& > :not(style)': { width: '50ch' },
+                    }}
+                
+                    autoComplete="off"
                 >
-
-         
+                <div style={{ display: 'flex' }}>
+                  
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box sx={{  position: 'relative' }}>
+                    <Fab
+                        aria-label="save"
+                        color="primary"
+                        sx={buttonSx}
+                        component="label"  
+                    >
+                        <input type="file" style={{ display: 'none' }} onChange={handleFileChange} />
+                        {success ? <CheckIcon /> : <Class/>}
+                    </Fab>
+                        {loading && (
+                        <CircularProgress
+                            size={68}
+                            sx={{
+                            color: green[500],
+                            position: 'absolute',
+                            top: -6,
+                            left: -5,
+                            zIndex: 1,
+                            }}
+                        />
+                        )}
+                    </Box>
+                    
+                    </Box>
+                
+                </div>
                 </Box>
               </Stack>
               {formik.errors.submit && (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState }  from 'react';
-import { Box, Grid, IconButton, Skeleton, Stack, Typography, useTheme } from '@mui/material';
+import { Avatar, Box, Grid, IconButton, Skeleton, Stack, Typography, useTheme } from '@mui/material';
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import Header from '../../general/header';
 import { palette } from '../../../theme';
@@ -40,7 +40,20 @@ const AddTeachers: React.FC = () => {
       { field: "id", headerName: "ID", type: "number", align: 'left', width: 150, headerAlign: 'left',editable: false  },
       { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
       { field: "description", headerName: "Description", type: "string", width: 200, align: 'left', headerAlign: 'left',editable: true  },
-
+      {
+        field: 'url',
+        headerName: 'cover',
+        type: 'string',
+        width: 60,
+        align: 'left',
+        headerAlign: 'left',
+        editable: false,
+        renderCell: (params) => (
+        <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%">
+          <Avatar src={params.value} alt="Avatar" sx={{ width: 36, height: 36, borderRadius: 4 }}/>
+        </Box>
+        ),
+      },
     ];
   return (
     <Box m="20px">
@@ -79,7 +92,7 @@ const AddTeachers: React.FC = () => {
 
           </Box>
           
-            <ListButton urlPlus='teachers' urlSrc='https://img.freepik.com/premium-photo/librarian-digital-avatar-generative-ai_934475-9092.jpg'/>
+            <ListButton urlPlus='teachers' />
           
         </Box>
         <Box

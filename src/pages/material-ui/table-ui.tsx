@@ -142,7 +142,6 @@ const updateRow = (data:apiPropsModifiers)=>{
         <DataGrid
           rows={dataStudents}
           columns={columnsStudents}
-          checkboxSelection
           disableRowSelectionOnClick
           editMode="cell"
           sx={{

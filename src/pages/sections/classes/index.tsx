@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, IconButton, Typography, useTheme } from '@mui/material';
+import { Avatar, Box, IconButton, Typography, useTheme } from '@mui/material';
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import Header from '../../general/header';
 import TableUi from '../../material-ui/table-ui';
@@ -27,10 +27,24 @@ const Classes: React.FC = () => {
 
 
     const columnsSections: Column[] = [
-      { field: "id", headerName: "ID", type: "number", align: 'left', headerAlign: 'left',editable: false  },
+      { field: "id", headerName: "ID", type: "number", align: 'left', headerAlign: 'left', width: 140,editable: false  },
+      {
+        field: 'url',
+        headerName: 'cover',
+        type: 'string',
+        width: 60,
+        align: 'left',
+        headerAlign: 'left',
+        editable: false,
+        renderCell: (params) => (
+        <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%">
+          <Avatar src={params.value} alt="Avatar" sx={{ width: 36, height: 36, borderRadius: 4 }}/>
+        </Box>
+        ),
+      },
       { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
-      { field: "description", headerName: "Description", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: true  },
-      { field: "createdAt", headerName: "Create Date", type: "string", width: 200, align: 'left', headerAlign: 'left',editable: false  },
+      { field: "description", headerName: "Description", type: "string", width: 130, align: 'left', headerAlign: 'left',editable: true  },
+      { field: "createdAt", headerName: "Create Date", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: false  },
 
     ];
   return (

@@ -1,5 +1,5 @@
 import React  from 'react';
-import { Box, Grid, IconButton, Skeleton, Stack, Typography, useTheme } from '@mui/material';
+import { Avatar, Box, Grid, IconButton, Skeleton, Stack, Typography, useTheme } from '@mui/material';
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import Header from '../../general/header';
 import { palette } from '../../../theme';
@@ -31,11 +31,25 @@ const AddStudents: React.FC = () => {
 
 
     const columnsSections: Column[] = [
-      { field: "id", headerName: "ID", type: "number", align: 'left', width: 100, headerAlign: 'left',editable: false  },
+      { field: "id", headerName: "ID", type: "number", align: 'left', width: 150, headerAlign: 'left',editable: false  },
+      {
+        field: 'url',
+        headerName: 'avatar',
+        type: 'string',
+        width: 60,
+        align: 'left',
+        headerAlign: 'left',
+        editable: false,
+        renderCell: (params) => (
+        <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%">
+          <Avatar src={params.value} alt="Avatar" />
+        </Box>
+        ),
+      },
       { field: "name", headerName: "Name", align: 'left', width: 80, headerAlign: 'left',editable: true },
       { field: "last_name", headerName: "Last Name", type: "string", width: 80, align: 'left', headerAlign: 'left',editable: true  },
-      { field: "email", headerName: "Eamil adress", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: true  },
-
+      { field: "email", headerName: "Eamil adress", type: "string", width: 140, align: 'left', headerAlign: 'left',editable: true  },
+ 
     ];
   return (
     <Box m="20px">
@@ -69,12 +83,12 @@ const AddStudents: React.FC = () => {
             p="15px"
           >
             <Typography color={colors.grey[100]} variant="h4" fontWeight="600">
-              Students
+              Classes
             </Typography>
 
           </Box>
           
-            <ListButton urlPlus='classes' urlSrc='https://png.pngtree.com/png-vector/20190803/ourmid/pngtree-calculator-calculation-math-progress-graph-flat-color-icon-v-png-image_1648951.jpg'/>
+            <ListButton urlPlus='classes' />
           
         </Box>
         <Box

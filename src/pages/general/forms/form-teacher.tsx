@@ -52,8 +52,7 @@ const FormTeacher: React.FC = () => {
         if (response.ok) {
           const data = await response.json();
           console.log('Datos de la imagen: ', data);
-          formik.setFieldValue('secure_url', data.secure_url);
-          formik.setFieldValue('public_id', data.public_id);
+          formik.setFieldValue('url', data.secure_url);
           setSuccess(true);
           setLoading(false);
         } else {
@@ -87,6 +86,7 @@ const FormTeacher: React.FC = () => {
       name: '',
       last_name: '',
       email: '',
+      url:'',
       submit: null
     },
     validationSchema: Yup.object({

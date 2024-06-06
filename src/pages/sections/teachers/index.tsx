@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, IconButton, Typography, useTheme } from '@mui/material';
+import { Avatar, Box, IconButton, Typography, useTheme } from '@mui/material';
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import Header from '../../general/header';
 import TableUi from '../../material-ui/table-ui';
@@ -27,6 +27,20 @@ const Teachers: React.FC = () => {
 
     const columnsSections: Column[] = [
       { field: "id", headerName: "ID", type: "number", align: 'left', headerAlign: 'left',editable: false  },
+      {
+        field: 'url',
+        headerName: 'Avatar',
+        type: 'string',
+        width: 60,
+        align: 'left',
+        headerAlign: 'left',
+        editable: false,
+        renderCell: (params) => (
+        <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%">
+          <Avatar src={params.value} alt="Avatar" />
+        </Box>
+        ),
+      },
       { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
       { field: "last_name", headerName: "LastName", type: "string", width: 100, align: 'left', headerAlign: 'left',editable: true  },
       { field: "email", headerName: "Email", type: "string", width: 200, align: 'left', headerAlign: 'left',editable: true  },
