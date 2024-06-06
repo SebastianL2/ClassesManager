@@ -176,7 +176,7 @@ const FormStudent: React.FC = () => {
                     autoComplete="off"
                 >
                 <div style={{ display: 'flex' }}>
-                    <TextField style={{ marginRight: '20px' }}
+                    <TextField style={{ marginRight: '12px',width: '210px' }}
                     error={!!(formik.touched.last_name && formik.errors.last_name)}
                     fullWidth
                     helperText={formik.touched.last_name && formik.errors.last_name}

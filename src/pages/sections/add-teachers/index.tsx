@@ -37,9 +37,9 @@ const AddTeachers: React.FC = () => {
   }, [globalContextId]);
 
     const columnsSections: Column[] = [
-      { field: "id", headerName: "ID", type: "number", align: 'left', width: 150, headerAlign: 'left',editable: false  },
+      { field: "id", headerName: "ID", type: "number", align: 'left', width: 80, headerAlign: 'left',editable: false  },
       { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
-      { field: "description", headerName: "Description", type: "string", width: 200, align: 'left', headerAlign: 'left',editable: true  },
+      { field: "description", headerName: "Description", type: "string", width: 150, align: 'left', headerAlign: 'left',editable: true  },
       {
         field: 'url',
         headerName: 'cover',

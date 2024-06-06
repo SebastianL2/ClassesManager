@@ -26,6 +26,7 @@ const FormClasses: React.FC = () => {
         backgroundColor: green[700],
       },
     }),
+    
   };
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -176,7 +177,7 @@ const FormClasses: React.FC = () => {
                 
                     autoComplete="off"
                 >
-                <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex',marginLeft: '17vh', }}>
                   
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Box sx={{  position: 'relative' }}>
