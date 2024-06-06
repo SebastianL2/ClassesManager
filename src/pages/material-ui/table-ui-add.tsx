@@ -124,7 +124,6 @@ const addClassRow = (id:string)=>{
       <DataGrid
         rows={dataStudents}
         columns={columnsStudents}
-        checkboxSelection
         disableRowSelectionOnClick
         editMode="cell"
         sx={{

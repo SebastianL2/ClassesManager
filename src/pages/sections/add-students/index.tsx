@@ -27,7 +27,27 @@ const AddStudents: React.FC = () => {
   }
 
 
- 
+  const columnsSections2: Column[] = [
+    { field: "id", headerName: "ID", type: "number", align: 'left', width: 50, headerAlign: 'left',editable: false  },
+    {
+      field: 'url',
+      headerName: 'avatar',
+      type: 'string',
+      width: 60,
+      align: 'left',
+      headerAlign: 'left',
+      editable: false,
+      renderCell: (params) => (
+      <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%">
+        <Avatar src={params.value} alt="Avatar" />
+      </Box>
+      ),
+    },
+    { field: "name", headerName: "Name", align: 'left', width: 80, headerAlign: 'left',editable: true },
+    { field: "last_name", headerName: "Last Name", type: "string", width: 80, align: 'left', headerAlign: 'left',editable: true  },
+    { field: "email", headerName: "Eamil adress", type: "string", width: 140, align: 'left', headerAlign: 'left',editable: true  },
+
+  ];
 
 
     const columnsSections: Column[] = [
@@ -134,7 +154,7 @@ const AddStudents: React.FC = () => {
                <Box >
               <TableUi urlPlus='students' urlPlus2={`classes/${contextId2}/students`} columnsSections={columnsSections}  updateParam={updateParam}/>
               <Box p="18vh 30px">
-              <PopUpWindow extension='STUDENT' urlPlus='students' urlPlus2='assign-students' columnsSections={columnsSections}/>
+              <PopUpWindow extension='STUDENT' urlPlus='students' urlPlus2='assign-students' columnsSections={columnsSections2}/>
               </Box>
               </Box>
             ) : (

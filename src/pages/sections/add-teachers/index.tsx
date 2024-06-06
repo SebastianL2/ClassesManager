@@ -36,6 +36,25 @@ const AddTeachers: React.FC = () => {
     }
   }, [globalContextId]);
 
+  const columnsSections2: Column[] = [
+    { field: "id", headerName: "ID", type: "number", align: 'left', width: 80, headerAlign: 'left',editable: false  },
+    { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
+    { field: "description", headerName: "Description", type: "string", width: 150, align: 'left', headerAlign: 'left',editable: true  },
+    {
+      field: 'url',
+      headerName: 'cover',
+      type: 'string',
+      width: 60,
+      align: 'left',
+      headerAlign: 'left',
+      editable: false,
+      renderCell: (params) => (
+      <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%">
+        <Avatar src={params.value} alt="Avatar" sx={{ width: 36, height: 36, borderRadius: 4 }}/>
+      </Box>
+      ),
+    },
+  ];
     const columnsSections: Column[] = [
       { field: "id", headerName: "ID", type: "number", align: 'left', width: 80, headerAlign: 'left',editable: false  },
       { field: "name", headerName: "Name", align: 'left', headerAlign: 'left',editable: true },
@@ -138,7 +157,7 @@ const AddTeachers: React.FC = () => {
                <Box >
               <TableUi urlPlus='teachers'  urlPlus2={`classes/${contextId}/teacher`} columnsSections={columnsSections}  updateParam={updateParam}/>
               <Box p="18vh 30px">
-              <PopUpWindow extension='CLASS' urlPlus='classes' urlPlus2='assign-teacher' columnsSections={columnsSections}/>
+              <PopUpWindow extension='CLASS' urlPlus='classes' urlPlus2='assign-teacher' columnsSections={columnsSections2}/>
               </Box>
               </Box>
             ) : (
