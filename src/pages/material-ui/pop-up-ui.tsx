@@ -53,10 +53,8 @@ export const PopUpWindow: React.FC <{extension:string,urlPlus:string,urlPlus2:st
   
     return (
       <React.Fragment>
-        <Box
-          sx={{ minHeight: '50vh'}}
-        >
-            <Box display="flex" justifyContent="center" mt="14vh">
+        <Box>
+            <Box display="flex" justifyContent="center">
               <Button
                 onClick={handleClickOpen}
                 sx={{
@@ -91,8 +89,8 @@ export const PopUpWindow: React.FC <{extension:string,urlPlus:string,urlPlus2:st
           }}
         >
         <DialogTitle sx={{ m: 0, p: 2 }}>
-          <Typography variant="h2" color={colors.grey[100]}>
-            Add new Class to A teacher 
+          <Typography variant="h2" fontWeight="bold" color={colors.grey[100]}>
+            Add new Relation
           </Typography>
         </DialogTitle>
           <IconButton

@@ -1,5 +1,5 @@
 
-import { Avatar, Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Avatar, Box, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Header from "../../general/header";
 import { palette } from "../../../theme";
 import { ListButton } from "../../general/list-button";
@@ -14,6 +14,7 @@ const Dashboard = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
   const { update: updateParam } = useGlobalState();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   interface Column {
     field: string;
     headerName: string;
@@ -57,9 +58,9 @@ const Dashboard = () => {
       </Box>
 
       <Box
-        display="grid"
+        display={isMobile ? 'block' : 'grid'}
         gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="14vh"
+        gridAutoRows={isMobile ? '8vh' : '14vh'}
         gap="20px"
       >
   
@@ -110,15 +111,13 @@ const Dashboard = () => {
               </IconButton>
             </Box>
           </Box>
-          <Box height="250px" m="-20px 0 0 0">
-           
-          </Box>
         </Box>
         <Box
           gridColumn="span 4"
           gridRow="span 2"
           sx={{ backgroundColor: colors.primary[400],borderRadius: 4 }} 
           overflow="auto"
+          mt={isMobile? "4vh":""}
         >
           <Box
             display="flex"
@@ -142,9 +141,9 @@ const Dashboard = () => {
       </Box>
 
       <Box
-      display="grid"
+      display={isMobile ? 'block' : 'grid'}
       gridTemplateColumns="repeat(12, 1fr)"
-      gridAutoRows="29vh"
+      gridAutoRows={isMobile ? '8vh' : '32vh'}
       gap="20px"
       sx={{ mt: 4, borderRadius: 34 }} 
     >
@@ -165,6 +164,7 @@ const Dashboard = () => {
           >
             <Box>
               <Typography
+                mt={2}
                 variant="h5"
                 fontWeight="600"
                 color={colors.grey[100]}
@@ -178,12 +178,13 @@ const Dashboard = () => {
   
             </Box>
           </Box>
-          <Box height="250px" p={4}>
+          <Box height="40vh" p={4}>
           <TableUi urlPlus='classes' columnsSections={[...columnsSections]} updateParam={updateParam}/>
           </Box>
         </Box>
         <Box
           gridColumn="span 4"
+          mt={isMobile? "4vh":""}
           gridRow="span 2"
           sx={{ backgroundColor: colors.primary[400],borderRadius: 4 }} 
           overflow="auto"

@@ -109,7 +109,7 @@ export const SidebarC: React.FC =()=>{
 
 
         <Box   sx={{ 
-       minHeight: '145vh', // Altura mínima de 50% del viewport
+       minHeight: '145vh', 
        paddingLeft: isCollapsed ? undefined : '10%'
         }}>
           <Item

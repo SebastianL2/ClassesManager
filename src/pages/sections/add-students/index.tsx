@@ -1,6 +1,5 @@
 import React  from 'react';
-import { Avatar, Box, Grid, IconButton, Skeleton, Stack, Typography, useTheme } from '@mui/material';
-import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
+import { Avatar, Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Header from '../../general/header';
 import { palette } from '../../../theme';
 import { GridAlignment, GridRenderCellParams } from '@mui/x-data-grid';
@@ -9,11 +8,14 @@ import { useGlobalState } from '../../general/global/GlobalStateContext';
 import { PopUpWindow } from '../../material-ui/pop-up-ui';
 import TableUi from '../../material-ui/table-ui';
 
+
 const AddStudents: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
   const { data2: contextId2 } = useGlobalState();
   const { update: updateParam } = useGlobalState();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   interface Column {
     field: string;
     headerName: string;
@@ -80,14 +82,16 @@ const AddStudents: React.FC = () => {
 
       {/* GRID & CHARTS */}
       <Box
-        display="grid"
+  
+        display={isMobile ? 'block' : 'grid'}
         gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="34vh" 
+        gridAutoRows={isMobile ? '12vh' : '34vh'}
         gap="20px"
       >
         {/* ROW 2 */}
         <Box
           gridColumn="span 4"
+          mb="2vh"
           gridRow="span 2"
           sx={{ backgroundColor: colors.primary[400],borderRadius: '8px' }}
           overflow="auto"
@@ -112,63 +116,55 @@ const AddStudents: React.FC = () => {
           
         </Box>
         <Box
-          component="div"
           gridColumn="span 8"
+          mb="2vh"
           gridRow="span 2"
-          sx={{ backgroundColor: colors.primary[400], borderRadius: '8px' }}
+          sx={{ backgroundColor: colors.primary[400],borderRadius: '8px' }}
+          overflow="auto"
+          p={2}
         >
-          <Box
-            mt="25px"
-            p="0 30px"
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Box>
+            <Box mt={2}>
               <Typography
                 variant="h3"
                 fontWeight="bold"
                 color={colors.grey[100]}
               >
-               Students Assigned to the class
+               Classes Assigned to The Teacher
               </Typography>
               <Typography
-                variant="h5"
+                variant="h6"
                 fontWeight="bold"
                 color={colors.grey[300]}
               >
-                Puedes editar haciendo doble click en la casilla luego dar click icono Guardar
+                Para ver las clasees relacionadas a los profesores dar click en alguno de ellos dela izquierda
                 
               </Typography>
             </Box>
-            <Box>
-              <IconButton>
-                <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                />
-              </IconButton>
-            </Box>
-          </Box>
-          <Box p="2vh 30px">
-            {contextId2 ? (
-               <Box >
+
+
+          {contextId2 ? (
+              <Box p={2}>
+              
               <TableUi urlPlus='students' urlPlus2={`classes/${contextId2}/students`} columnsSections={columnsSections}  updateParam={updateParam}/>
-              <Box p="18vh 30px">
+              <Box 
+               mt={isMobile? "18vh":"32vh"} 
+               >
               <PopUpWindow extension='STUDENT' urlPlus='students' urlPlus2='assign-students' columnsSections={columnsSections2}/>
               </Box>
               </Box>
             ) : (
               <Grid item xs={18} md={18} lg={18}>
-                <Box display="flex" justifyContent="center" height="70vh">
-                  <Stack spacing={1}>
-                    <Skeleton variant="rectangular" width={'90vh'} height={'54vh'} />
-                  </Stack>
+                <Box display="flex" justifyContent="center" >
+                   <Typography 
+                     variant='h1' 
+                     fontWeight="bold"
+                     color={colors.grey[100]}
+                    >
+                     Select One Teacher
+                   </Typography>
                 </Box>
               </Grid>
             )}
-  
-          </Box>
-
           
         </Box>
  

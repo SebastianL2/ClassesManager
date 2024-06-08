@@ -1,5 +1,5 @@
 import React, { useEffect, useState }  from 'react';
-import { Avatar, Box, Grid, IconButton, Skeleton, Stack, Typography, useTheme } from '@mui/material';
+import { Avatar, Box, Grid, IconButton, Skeleton, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import Header from '../../general/header';
 import { palette } from '../../../theme';
@@ -15,6 +15,7 @@ const AddTeachers: React.FC = () => {
   const { data: globalContextId } = useGlobalState();
   const [contextId, setContextId] = useState(globalContextId);
   const { update: updateParam } = useGlobalState();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   interface Column {
     field: string;
     headerName: string;
@@ -85,9 +86,9 @@ const AddTeachers: React.FC = () => {
 
       {/* GRID & CHARTS */}
       <Box
-        display="grid"
-        gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="34vh" 
+       display={isMobile ? 'block' : 'grid'}
+       gridTemplateColumns="repeat(12, 1fr)"
+       gridAutoRows={isMobile ? '12vh' : '34vh'}
         gap="20px"
       >
         {/* ROW 2 */}
@@ -129,7 +130,7 @@ const AddTeachers: React.FC = () => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Box>
+            <Box mt={2}>
               <Typography
                 variant="h3"
                 fontWeight="bold"
@@ -158,7 +159,7 @@ const AddTeachers: React.FC = () => {
             {contextId ? (
                <Box >
               <TableUi urlPlus='teachers'  urlPlus2={`classes/${contextId}/teacher`} columnsSections={columnsSections}  updateParam={updateParam}/>
-              <Box p="18vh 30px">
+              <Box mt={isMobile? "18vh":"32vh"} >
               <PopUpWindow extension='CLASS' urlPlus='classes' urlPlus2='assign-teacher' columnsSections={columnsSections2}/>
               </Box>
               </Box>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Avatar, Box, IconButton, Typography, useTheme } from '@mui/material';
-import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
+import { Avatar, Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Header from '../../general/header';
 import TableUi from '../../material-ui/table-ui';
 import { palette } from '../../../theme';
@@ -12,6 +11,7 @@ const Teachers: React.FC = () => {
   const theme = useTheme();
   const colors = palette(theme.palette.mode);
   const { update: updateParam } = useGlobalState();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   interface Column {
     field: string;
     headerName: string;
@@ -52,57 +52,51 @@ const Teachers: React.FC = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="STUDENTS SECTION" subtitle="See all the data of students " />
+        <Header title="TEACHERS SECTION" subtitle="See all the data of students " />
       </Box>
 
       {/* GRID & CHARTS */}
       <Box
-        display="grid"
+        display={isMobile ? 'block' : 'grid'}
         gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="30vh" 
+        gridAutoRows={isMobile ? '12vh' : '34vh'}
         gap="20px"
       >
         {/* ROW 2 */}
         <Box
-          component="div"
           gridColumn="span 8"
+          mb="2vh"
           gridRow="span 2"
-          sx={{ backgroundColor: colors.primary[400], borderRadius: '8px' }}
+          sx={{ backgroundColor: colors.primary[400],borderRadius: '8px' }}
+          overflow="auto"
+          p={2}
         >
-          <Box
-            mt="25px"
-            p="0 30px"
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Box>
+            <Box mt={2}>
               <Typography
                 variant="h3"
                 fontWeight="bold"
                 color={colors.grey[100]}
               >
-                Teachers Users System
+               Classes Assigned to The Teacher
               </Typography>
               <Typography
-                variant="h5"
+                variant="h6"
                 fontWeight="bold"
                 color={colors.grey[300]}
               >
-                Puedes editar haciendo doble click en la casilla luego dar click icono Guardar
+                Para ver las clasees relacionadas a los profesores dar click en alguno de ellos dela izquierda
+                
               </Typography>
             </Box>
-            <Box>
-              <IconButton>
-                <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                />
-              </IconButton>
-            </Box>
-          </Box>
-          <Box p="5px 30px">
-            <TableUi urlPlus='teachers' columnsSections={[...columnsSections]} updateParam={updateParam}/>
-          </Box>
+
+
+              <Box p={2}>
+              
+              <TableUi urlPlus='teachers' columnsSections={[...columnsSections]} updateParam={updateParam}/>
+
+              </Box>
+ 
+          
         </Box>
         <Box
           gridColumn="span 4"
